@@ -1,0 +1,16 @@
+Create emulator accounts
+
+    flow keys generate
+    flow accounts create --key PublicKey
+
+    then update the flow.json
+
+fundEmulator.cdc
+
+    flow transactions send ./cadence/utilities/fundEmulator.cdc f8d6e0586b0a20c7 1000.0
+    flow transactions send ./cadence/utilities/fundEmulator.cdc 01cf0e2f2f715450 1000.0
+
+getBalance.cdc
+
+    flow scripts execute ./cadence/utilities/getBalance.cdc f8d6e0586b0a20c7
+    flow scripts execute ./cadence/utilities/getBalance.cdc 01cf0e2f2f715450
