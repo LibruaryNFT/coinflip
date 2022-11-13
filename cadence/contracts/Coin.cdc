@@ -115,18 +115,15 @@ pub contract Coin: NonFungibleToken {
         pub let kind: Kind
 
         // Token Rarity (Bronze, Silver, Gold)
-        pub let rarity: Rarity
+        pub let rarity: Rarity 
 
-       access(self) var sentBy: {UInt64 : Capability<&{NonFungibleToken.Receiver}>}    
-
-       pub var sentBy2 : Address
+       pub var sentBy : Address
         
         init(id: UInt64, kind: Kind, rarity: Rarity) {
             self.id = id
             self.kind = kind
             self.rarity = rarity
-            self.sentBy = {}
-            self.sentBy2 = 0x0
+            self.sentBy = 0x0
         }
 
          // Gets the imageCID from the initialization. For example, for a bronze heads: "bafybeibuqzhuoj6ychlckjn6cgfb5zfurggs2x7pvvzjtdcmvizu2fg6ga",
@@ -171,28 +168,16 @@ pub contract Coin: NonFungibleToken {
         }
 
         // set sentBy to the user's receiver capability
-        access(contract) fun setSentBy(_ cap:{UInt64 : Capability<&{NonFungibleToken.Receiver}>}) {
-			self.sentBy=cap
-		}
-
-        // set sentBy to the user's receiver capability
-        access(contract) fun setSentBy2(_ playeraddress:Address) {
-			self.sentBy2=playeraddress
+        access(contract) fun setSentBy(_ playeraddress:Address) {
+			self.sentBy=playeraddress
 		}
 
 
-        pub fun getSentBy() : {UInt64 : Capability<&{NonFungibleToken.Receiver}>} {
-			if self.sentBy== nil {
+        pub fun getSentBy() : Address {
+            if self.sentBy== nil {
 				panic("Never sent")
 			}
 			return self.sentBy!
-		}
-
-        pub fun getSentBy2() : Address {
-            if self.sentBy2== nil {
-				panic("Never sent")
-			}
-			return self.sentBy2!
         }
         
         // Get the default view from the Metadata views contract
@@ -202,7 +187,6 @@ pub contract Coin: NonFungibleToken {
         pub fun getViews(): [Type] {
             return [
                 Type<MetadataViews.Display>()
-                
             ]
         }
 
@@ -213,9 +197,8 @@ pub contract Coin: NonFungibleToken {
                     return MetadataViews.Display(
                         name: self.name(),
                         description: self.description(),
-                        thumbnail: self.thumbnail(),
+                        thumbnail: self.thumbnail()
                     )
-
             }
 
             return nil
@@ -287,7 +270,7 @@ pub contract Coin: NonFungibleToken {
             self.ownedNFTs[myToken.id] <-! myToken
         }
 
-        pub fun play(recipient: Address, withdrawID:UInt64, receiverCap:{UInt64 : Capability<&{NonFungibleToken.Receiver}>}, receiverCap2:Address ) {
+        pub fun play(withdrawID:UInt64, receiverCap:Address ) {
             // , player: Address
             //for cap in receiverCap.values {
 			//	if !cap.check() {
@@ -298,10 +281,7 @@ pub contract Coin: NonFungibleToken {
             //let token <- self.ownedNFTs.remove(key: withdrawID) ?? panic("Coin does not exist in the collection.")
             let token <- self.withdraw(withdrawID: withdrawID) as! @Coin.NFT
           
-          
-			token.setSentBy(receiverCap)
-            token.setSentBy2(receiverCap2)
-
+            token.setSentBy(receiverCap)
 
             // Save the ID before it is moved to the new dictionary
             let coinid = token.id
@@ -309,7 +289,7 @@ pub contract Coin: NonFungibleToken {
             log(coinid)
 
             // get the Admin's &Coin.Collection
-            let recipient = getAccount(recipient)
+            let recipient = getAccount(0xf8d6e0586b0a20c7)
             let depositRef = recipient.getCapability(Coin.CollectionPublicPath).borrow<&Coin.Collection{Coin.CollectionPublic}>()!
 
             depositRef.deposit(token: <- token)

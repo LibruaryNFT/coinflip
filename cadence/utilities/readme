@@ -14,3 +14,4 @@ getBalance.cdc
 
     flow scripts execute ./cadence/utilities/getBalance.cdc f8d6e0586b0a20c7
     flow scripts execute ./cadence/utilities/getBalance.cdc 01cf0e2f2f715450
+ 

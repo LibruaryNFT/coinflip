@@ -20,6 +20,9 @@ mint_nft.cdc
 setup_account.cdc
 
 
+play_game.cdc
+
+    flow transactions send ./cadence/transactions/play_game.cdc 01cf0e2f2f715450 0
 
 setup_sales.cdc
 
