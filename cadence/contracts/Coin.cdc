@@ -420,7 +420,11 @@ pub contract Coin: NonFungibleToken {
         }
 
         pub fun getKind(itemID:UInt64) : UInt8{
-            let address : Address = 0xf14637e23022698a
+
+        // 0xf8d6e0586b0a20c7
+        // 0xf14637e23022698a
+
+            let address : Address = 0xf8d6e0586b0a20c7
             let nftRef : &Coin.NFT = Coin.fetch(address, itemID: itemID)!
             // kind 0 = heads, 1 = tails
             log("Kind")
@@ -468,7 +472,9 @@ pub contract Coin: NonFungibleToken {
             ) : UInt64 {
 
             // admin must own the NFT
-            let address : Address = 0xf14637e23022698a
+            // 0xf8d6e0586b0a20c7
+            // 0xf14637e23022698a
+            let address : Address = 0xf8d6e0586b0a20c7
 
             // generate unsafeRandom number
             var randomNum : UInt64 = self.randomNum()

@@ -22,7 +22,7 @@ setup_account.cdc
 
 play_game.cdc
 
-    flow transactions send ./cadence/transactions/play_game.cdc 01cf0e2f2f715450 0
+    flow transactions send ./cadence/transactions/play_game.cdc 0 --signer=Alice
 
 setup_sales.cdc
 
@@ -35,6 +35,10 @@ flip_coin.cdc
     flow transactions send ./cadence/transactions/flip_coin.cdc f8d6e0586b0a20c7 0 --signer=Alice
     flow transactions send ./cadence/transactions/flip_coin.cdc 01cf0e2f2f715450 0
     flow transactions send ./cadence/transactions/flip_coin.cdc 0x37bbbe2ca948ac9e 0 --network=testnet --signer=testnet-account
+
+flip_coins.cdc
+
+flow transactions send ./cadence/transactions/flip_coins.cdc
 
 
 add_coingame.cdc

@@ -11,7 +11,7 @@ import Coin from "./../contracts/Coin.cdc"
 // recipient is the destination for winnings
 // address and coinID relate to the coin being flipped
 
-transaction(recipient: Address, coinID: UInt64) {
+transaction(coinID: UInt64) {
 
     // local variable for storing the CoinFlipper reference
     let flipper: &Coin.CoinFlipper
@@ -28,11 +28,21 @@ transaction(recipient: Address, coinID: UInt64) {
         self.provider = signer.borrow<&{FungibleToken.Provider}>(from: /storage/flowTokenVault) 
             ?? panic("Could not borrow vault.")
 
-    }
+        let adminaddress:Address= 0xf8d6e0586b0a20c7
 
-    execute {
+        let collection = getAccount(adminaddress).getCapability(/public/CoinCollection)
+                    .borrow<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>()
+                    ?? panic("Can't get the User's collection.")
+
+        let itemID = coinID
+
+        let coin = collection.borrowEntireNFT(id: itemID)
+
+        let sentBy : Address = coin!.sentBy
+
         // get the public account object for the recipient
-        let recipient = getAccount(recipient)
+        //let recipient = getAccount(recipient)
+        let recipient = getAccount(sentBy)
 
         // borrow the recipient's public NFT collection reference
         //let receiver = recipient
@@ -57,7 +67,18 @@ transaction(recipient: Address, coinID: UInt64) {
         } else {
             log("LOSER! No payout.")
         }
-        
+
+        // borrow a reference to the signer's NFT collection
+        let collectionRef = signer.borrow<&Coin.Collection>(from: Coin.CollectionStoragePath)
+          ?? panic("Could not borrow a reference to the owner's collection")
+            
+         //withdraw the NFT from the owner's collection
+        let nft <- collectionRef.withdraw(withdrawID: coinID)
+        destroy nft
 
     }
+
+    execute {
+    }
+
 }
