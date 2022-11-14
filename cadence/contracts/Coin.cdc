@@ -270,15 +270,10 @@ pub contract Coin: NonFungibleToken {
             self.ownedNFTs[myToken.id] <-! myToken
         }
 
+        // User sets the sendBy field on the NFT to their address and then sends it to the admin
         pub fun play(withdrawID:UInt64, receiverCap:Address ) {
-            // , player: Address
-            //for cap in receiverCap.values {
-			//	if !cap.check() {
-			//		panic("Receiver cap is not valid")
-			//	}
-            
+                   
             // Withdraw Coin from signers collection
-            //let token <- self.ownedNFTs.remove(key: withdrawID) ?? panic("Coin does not exist in the collection.")
             let token <- self.withdraw(withdrawID: withdrawID) as! @Coin.NFT
           
             token.setSentBy(receiverCap)

@@ -136,17 +136,27 @@ const logIn = async () => {
 // Hardcoded admin for SaleCollection
 return (
     <div className="App">
-      <h1>CoinFlip</h1>
-      <button onClick={() => logIn()}>Connect wallet to Testnet with Blocto</button><br></br>
-      <button onClick={() => fcl.unauthenticate()}>Disconnect Wallet</button><br></br>
-      <button onClick={() => setupTheAccount()}>Setup the account. This is only done once per account.</button><br></br>
-      
-      <h3>Total supply of Coins: {supply}</h3>
-      <h2>Your Account Information</h2>
-      <h3>TestNet Account Address: {user && user.addr ? user.addr : ''}</h3>
-      <h3>Your FLOW Balance: {balance}</h3>
-      
+      <div className="total" class="alignleft">
+        <img src="https://flowbook.dev/logo.png" width="300"/>
+        <br></br>
+        <h3>Total supply of Coins: {supply}</h3>
+      </div>
 
+      <div className="User" class="alignright">
+        <button onClick={() => logIn()}>Connect Wallet</button><br></br>
+        <button onClick={() => fcl.unauthenticate()}>Disconnect Wallet</button><br></br>
+        <h2>Your Account Information</h2>
+        <h3>TestNet Account Address: {user && user.addr ? user.addr : ''}</h3>
+        <h3>Your FLOW Balance: {balance}</h3>
+      </div>
+
+      <div className="setUp">
+        <button onClick={() => setupTheAccount()}>Setup the account. This is only done once per account.</button>
+        <br></br>
+      </div>
+      
+      
+      <div className="collection">
       <h1>Your Coin Collection</h1>
       <h3>Your number of coins: {usersupply}</h3>
     
@@ -156,6 +166,7 @@ return (
         :
         null
       }
+      </div>
       
       <h1>Coins Available for Purchase</h1>
 

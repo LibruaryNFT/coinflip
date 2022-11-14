@@ -1,5 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -36,3 +40,11 @@
     transform: rotate(360deg);
   }
 }
+
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
