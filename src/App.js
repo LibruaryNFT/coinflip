@@ -1,12 +1,14 @@
 import './App.css';
 
+import "./dist/output.css"
 
 import CoinCollection from "./components/CoinCollection.js";
 import SaleCollection from "./components/SaleCollection.js";
 import AdminStore from "./components/AdminStore.js"
-import Header from "./components/Header.js"
 import UserAccount from "./components/UserAccount.js"
+
 import * as fcl from "@onflow/fcl";
+
 import {getTotalSupply} from "./cadence/scripts/get_total_supply.js";
 import {getUserTotal} from "./cadence/scripts/get_collection_length.js";
 import {getBalance} from "./cadence/scripts/get_balance.js";
@@ -44,10 +46,8 @@ function App() {
       getTheUserTotal();
       getTheBalance(); 
     } 
-
   }
   
-
   const getTheSupply = async () => {
     const result = await fcl.send([
       fcl.script(getTotalSupply)
@@ -87,13 +87,15 @@ function App() {
 
   return (
     
-    <div className="App">
-      <Header/>
+    <div className="bg-gray-400">
+
+      <UserAccount/>
+
       <div className="total">
         <h3>Total supply of Coins: {supply}</h3>
       </div>
-
-      <UserAccount/>
+      
+      
 
       <div className="setUp">
         <button onClick={() => setupTheAccount()}>Setup the account. This is only done once per account.</button>
@@ -110,6 +112,7 @@ function App() {
       </div>
 
       <SaleCollection address="0x0af01d98f61b53df"></SaleCollection>
+
       <AdminStore/>
    
     </div>
