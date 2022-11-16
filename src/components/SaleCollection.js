@@ -1,10 +1,10 @@
-import './App.css';
+import '../App.css';
 
 import * as fcl from "@onflow/fcl";
 import * as t from "@onflow/types";
 import {useState, useEffect} from 'react';
-import {getNFTListings} from "./cadence/scripts/get_nft_listings.js";
-import {purchaseTx} from "./cadence/transactions/purchase.js";
+import {getNFTListings} from "../cadence/scripts/get_nft_listings.js";
+import {purchaseTx} from "../cadence/transactions/purchase.js";
 
 function SaleCollection(props) {
   const [nfts, setNFTs] = useState([]);
@@ -45,6 +45,7 @@ function SaleCollection(props) {
  
   return (
     <div style={{backgroundColor: 'lightblue'}}>
+      <h1>Coins Available for Purchase</h1>
        {Object.keys(nfts).map(nftID => (
           <div key={nftID}>
               <h3>ID: {nftID}</h3>

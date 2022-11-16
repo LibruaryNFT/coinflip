@@ -1,22 +1,17 @@
 import './App.css';
 
-import CoinCollection from "./CoinCollection.js";
-import SaleCollection from "./SaleCollection.js";
 
-
+import CoinCollection from "./components/CoinCollection.js";
+import SaleCollection from "./components/SaleCollection.js";
+import AdminStore from "./components/AdminStore.js"
+import Header from "./components/Header.js"
+import UserAccount from "./components/UserAccount.js"
 import * as fcl from "@onflow/fcl";
-import * as t from "@onflow/types"
-
 import {getTotalSupply} from "./cadence/scripts/get_total_supply.js";
 import {getUserTotal} from "./cadence/scripts/get_collection_length.js";
 import {getBalance} from "./cadence/scripts/get_balance.js";
-
 import {setup} from  "./cadence/transactions/setup.js";
-
-import {listNFT} from  "./cadence/transactions/list_for_sale.js";
-import {unlistFromSaleTx} from  "./cadence/transactions/unlist_from_sale.js";
 import {useState, useEffect} from 'react';
-
 
 fcl.config()
   .put("accessNode.api", "https://rest-testnet.onflow.org")
@@ -24,8 +19,6 @@ fcl.config()
 
 function App() {
   const[user, setUser] = useState();
-  const[saleItemID, setID] = useState();
-  const[saleItemPrice, setPrice] = useState();
   const[supply, setSupply] = useState('');
   const[usersupply, setUserSupply] = useState('');
   const[balance, setBalance] = useState('');
@@ -59,8 +52,6 @@ function App() {
     const result = await fcl.send([
       fcl.script(getTotalSupply)
     ]).then(fcl.decode);
-    
-   // console.log(["getTheSupply", result]);
     setSupply(result);
   }
 
@@ -69,7 +60,6 @@ function App() {
       fcl.script(getUserTotal),
       fcl.args([fcl.currentUser])
     ]).then(fcl.decode);
-
     setUserSupply(result)
   }
 
@@ -82,109 +72,49 @@ function App() {
     setBalance(result)
   }
 
-  const listForSale = async () => {
+  const setupTheAccount = async () => {
     const transactionId = await fcl.send([
-      fcl.transaction(listNFT),
-      fcl.args([
-          fcl.arg(parseInt(saleItemID), t.UInt64),
-          fcl.arg(saleItemPrice, t.UFix64),
-      ]),
+      fcl.transaction(setup),
       fcl.payer(fcl.currentUser),
       fcl.proposer(fcl.currentUser),
       fcl.authorizations([fcl.currentUser]),
       fcl.limit(9999)
     ]).then(fcl.decode);
 
-    console.log(transactionId);
-    return fcl.tx(transactionId).onceSealed();
+    console.log(transactionId)
   }
 
-const unlistFromSale = async () => {
-      const transactionId = await fcl.send([
-        fcl.transaction(unlistFromSaleTx),
-        fcl.args([
-          fcl.arg(parseInt(saleItemID), t.UInt64)
-        ]),
-        fcl.payer(fcl.authz),
-        fcl.proposer(fcl.authz),
-        fcl.authorizations([fcl.authz]),
-        fcl.limit(9999)
-      ]).then(fcl.decode);
-  
-      console.log(transactionId);
-      return fcl.tx(transactionId).onceSealed();
-}
 
-const setupTheAccount = async () => {
-  const transactionId = await fcl.send([
-    fcl.transaction(setup),
-    fcl.payer(fcl.currentUser),
-    fcl.proposer(fcl.currentUser),
-    fcl.authorizations([fcl.currentUser]),
-    fcl.limit(9999)
-  ]).then(fcl.decode);
-
-  console.log(transactionId)
-}
-
-const logIn = async () => {
-    await fcl.authenticate();
-    loginStatus();
+  return (
     
- }
-
-// Hardcoded admin for SaleCollection
-return (
     <div className="App">
-      <div className="total" class="alignleft">
-        <img src="https://flowbook.dev/logo.png" width="300"/>
-        <br></br>
+      <Header/>
+      <div className="total">
         <h3>Total supply of Coins: {supply}</h3>
       </div>
 
-      <div className="User" class="alignright">
-        <button onClick={() => logIn()}>Connect Wallet</button><br></br>
-        <button onClick={() => fcl.unauthenticate()}>Disconnect Wallet</button><br></br>
-        <h2>Your Account Information</h2>
-        <h3>TestNet Account Address: {user && user.addr ? user.addr : ''}</h3>
-        <h3>Your FLOW Balance: {balance}</h3>
-      </div>
+      <UserAccount/>
 
       <div className="setUp">
         <button onClick={() => setupTheAccount()}>Setup the account. This is only done once per account.</button>
-        <br></br>
       </div>
       
-      
-      <div className="collection">
-      <h1>Your Coin Collection</h1>
-      <h3>Your number of coins: {usersupply}</h3>
-    
-      { user && user.addr 
-        ?
+      <div className="collection">    
+        { user && user.addr 
+          ?
         <CoinCollection address={user.addr}></CoinCollection>
         :
         null
-      }
+        }
+
       </div>
-      
-      <h1>Coins Available for Purchase</h1>
 
       <SaleCollection address="0x0af01d98f61b53df"></SaleCollection>
-
-      <h1>Admin Storefront Only - List and Unlist your Coins</h1>
-      <div>
-        <label>ID: </label>
-        <input type="text" onChange={(e) => setID(e.target.value)} />
-        <label>Price: </label>
-        <input type="text" onChange={(e) => setPrice(e.target.value)} />
-        <button onClick={() => listForSale()}>List Coin for Sale</button>
-        <button onClick={() => unlistFromSale()}>Unlist Coin from Sale</button>
-      </div>     
-
+      <AdminStore/>
+   
     </div>
     
-);
+  );
 
 }
 
