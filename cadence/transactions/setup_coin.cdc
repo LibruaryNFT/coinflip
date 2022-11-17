@@ -14,13 +14,13 @@ transaction {
         if signer.borrow<&Coin.Collection>(from: Coin.CollectionStoragePath) == nil {
             
 
-        // save it to the account
-        signer.save(<-Coin.createEmptyCollection(), to: Coin.CollectionStoragePath)
+            // save it to the account
+            signer.save(<-Coin.createEmptyCollection(), to: Coin.CollectionStoragePath)
 
-        // create a public capability for the collection
-        signer.link<&Coin.Collection{Coin.CollectionPublic, NonFungibleToken.CollectionPublic, MetadataViews.ResolverCollection}>(Coin.CollectionPublicPath, target: Coin.CollectionStoragePath)
-        signer.link<&Coin.Collection>(Coin.CollectionPrivatePath, target: Coin.CollectionStoragePath)
-        log("CoinCollection setup.")
+            // create a public capability for the collection
+            signer.link<&Coin.Collection{Coin.CollectionPublic, NonFungibleToken.CollectionPublic, MetadataViews.ResolverCollection}>(Coin.CollectionPublicPath, target: Coin.CollectionStoragePath)
+            signer.link<&Coin.Collection>(Coin.CollectionPrivatePath, target: Coin.CollectionStoragePath)
+            log("CoinCollection setup.")
 
         }
     }

@@ -1,5 +1,5 @@
 export const getTotalSupply = `
-import Coin from 0xf14637e23022698a
+import Coin from 0x9582fcd59741438c
 
 pub fun main(): UInt64 {    
     return Coin.totalSupply

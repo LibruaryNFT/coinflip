@@ -1,4 +1,5 @@
 import '../App.css';
+import '../dist/output.css';
 
 import * as fcl from "@onflow/fcl";
 import * as t from "@onflow/types";
@@ -44,8 +45,8 @@ function SaleCollection(props) {
   }
  
   return (
-    <div style={{backgroundColor: 'lightblue'}}>
-      <h1>Coins Available for Purchase</h1>
+    <div className="flex flex-col text-center font-bold bg-green-400">
+      
        {Object.keys(nfts).map(nftID => (
           <div key={nftID}>
               <h3>ID: {nftID}</h3>

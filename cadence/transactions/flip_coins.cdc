@@ -28,7 +28,8 @@ transaction() {
         self.provider = signer.borrow<&{FungibleToken.Provider}>(from: /storage/flowTokenVault) 
             ?? panic("Could not borrow vault.")
 
-        let adminaddress:Address= 0xf8d6e0586b0a20c7
+        // Hardcoded
+        let adminaddress:Address=0x9582fcd59741438c
 
         let collection = getAccount(adminaddress).getCapability(/public/CoinCollection)
                     .borrow<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>()
@@ -41,6 +42,22 @@ transaction() {
             let coin = collection.borrowEntireNFT(id: coinID)
 
             let sentBy : Address = coin!.sentBy
+
+            var amount:UFix64 = 0.0
+
+            // Payout table. 
+            //Rarity 0 Bronze cost 1Flow, pays out 2
+            //Rarity 1 Silver cost 5Flow, pays out 10
+            //Rarity 2 Gold cost 25Flow, pays out 50
+            if coin!.rarity.rawValue == 0 {
+                     amount  = 2.0
+            } else if coin!.rarity.rawValue == 1 {
+                    amount = 10.0
+            } else if coin!.rarity.rawValue == 2 {
+                    amount = 50.0
+            }
+    
+                
 
             // get the public account object for the recipient
             //let recipient = getAccount(recipient)
@@ -61,7 +78,6 @@ transaction() {
             // Payout
 
             if coinresult == 0 {
-                let amount : UFix64 = 1.0
                 let tokens <- self.provider.withdraw(amount: amount)
                 recipient.getCapability<&{FungibleToken.Receiver}>(/public/flowTokenReceiver).borrow()!.deposit(from: <-tokens)
                 log("WINNER! Payout of $FLOW sent!")

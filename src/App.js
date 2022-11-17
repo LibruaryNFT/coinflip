@@ -1,18 +1,16 @@
-import './App.css';
-
 import "./dist/output.css"
 
 import CoinCollection from "./components/CoinCollection.js";
 import SaleCollection from "./components/SaleCollection.js";
 import AdminStore from "./components/AdminStore.js"
 import UserAccount from "./components/UserAccount.js"
+import SetupAccount from "./components/SetupAccount.js"
+import CoinStats from "./components/CoinStats.js"
+import Footer from "./components/Footer.js"
 
 import * as fcl from "@onflow/fcl";
 
-import {getTotalSupply} from "./cadence/scripts/get_total_supply.js";
-import {getUserTotal} from "./cadence/scripts/get_collection_length.js";
-import {getBalance} from "./cadence/scripts/get_balance.js";
-import {setup} from  "./cadence/transactions/setup.js";
+import {checkCoinCollection} from "./cadence/scripts/check_coincollection.js";
 import {useState, useEffect} from 'react';
 
 fcl.config()
@@ -21,15 +19,16 @@ fcl.config()
 
 function App() {
   const[user, setUser] = useState();
-  const[supply, setSupply] = useState('');
-  const[usersupply, setUserSupply] = useState('');
-  const[balance, setBalance] = useState('');
+  const[coincollectioncheck, setCheckCoinCollection] = useState('');
 
   useEffect(() => {
 
     const onload = async () => {
       loginStatus();
+      checkTheCoinCollection();
     }
+
+    document.title = 'CoinFlip';
     
     onload();
 
@@ -38,82 +37,47 @@ function App() {
  const loginStatus = async () => {
     const currentUser = await fcl.currentUser.snapshot();
     console.log("The Current User", currentUser.addr);
-    getTheSupply();
-
     if (currentUser.addr) { // user is logged in
       // sets the `user` variable to the person that is logged in through Blocto
       fcl.currentUser().subscribe(setUser);
-      getTheUserTotal();
-      getTheBalance(); 
     } 
   }
-  
-  const getTheSupply = async () => {
-    const result = await fcl.send([
-      fcl.script(getTotalSupply)
-    ]).then(fcl.decode);
-    setSupply(result);
-  }
 
-  const getTheUserTotal = async () => {
+  const checkTheCoinCollection = async () => {
     const result = await fcl.send([
-      fcl.script(getUserTotal),
-      fcl.args([fcl.currentUser])
-    ]).then(fcl.decode);
-    setUserSupply(result)
-  }
-
-  const getTheBalance = async () => {
-    const result = await fcl.send([
-      fcl.script(getBalance),
+      fcl.script(checkCoinCollection),
       fcl.args([fcl.currentUser])
     ]).then(fcl.decode);
 
-    setBalance(result)
+    setCheckCoinCollection(result)
   }
-
-  const setupTheAccount = async () => {
-    const transactionId = await fcl.send([
-      fcl.transaction(setup),
-      fcl.payer(fcl.currentUser),
-      fcl.proposer(fcl.currentUser),
-      fcl.authorizations([fcl.currentUser]),
-      fcl.limit(9999)
-    ]).then(fcl.decode);
-
-    console.log(transactionId)
-  }
-
 
   return (
     
-    <div className="bg-gray-400">
+    <div>
 
       <UserAccount/>
 
-      <div className="total">
-        <h3>Total supply of Coins: {supply}</h3>
-      </div>
-      
-      
 
-      <div className="setUp">
-        <button onClick={() => setupTheAccount()}>Setup the account. This is only done once per account.</button>
+      <div className="flex flex-col text-center font-bold  bg-blue-400">
+        <h1 className="text-white text-4xl">Your Coin Collection</h1>
       </div>
-      
-      <div className="collection">    
-        { user && user.addr 
-          ?
+
+      { coincollectioncheck == true 
+        ?
         <CoinCollection address={user.addr}></CoinCollection>
-        :
-        null
-        }
 
+        :
+        <SetupAccount/>
+      }
+
+      <div className="flex flex-col text-center font-bold  bg-green-400">
+        <h1 className="text-white text-4xl">Coin Marketplace</h1>
       </div>
 
-      <SaleCollection address="0x0af01d98f61b53df"></SaleCollection>
+      <SaleCollection address="0x28b2715c085b4a79"/>
 
-      <AdminStore/>
+      <Footer/>
    
     </div>
     

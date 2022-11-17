@@ -1,5 +1,8 @@
 import '../App.css';
 
+import {listNFT} from "../cadence/transactions/list_for_sale.js";
+import {unlistFromSaleTx} from "../cadence/transactions/unlist_from_sale.js";
+
 import * as fcl from "@onflow/fcl";
 import * as t from "@onflow/types";
 import {useEffect, useState} from 'react';
@@ -7,13 +10,6 @@ import {useEffect, useState} from 'react';
 function AdminStore() {
     const[saleItemID, setID] = useState();
     const[saleItemPrice, setPrice] = useState();
-  
-    useEffect(() => {
-  
-    }, [])
-  
-  
-
   
     const listForSale = async () => {
       const transactionId = await fcl.send([
@@ -51,14 +47,14 @@ function AdminStore() {
     return (  
 
         
-        <div>
-        <h1>Admin Storefront Only - List and Unlist your Coins</h1>
-          <label>ID: </label>
-          <input type="text" onChange={(e) => setID(e.target.value)} />
-          <label>Price: </label>
-          <input type="text" onChange={(e) => setPrice(e.target.value)} />
-          <button onClick={() => listForSale()}>List Coin for Sale</button>
-          <button onClick={() => unlistFromSale()}>Unlist Coin from Sale</button>
+        <div className="flex flex-col text-center font-bold  bg-blue-400">
+            <h1 className="text-white text-4xl">Admin Storefront Only - List and Unlist your Coins</h1>
+            <label>ID: </label>
+            <input type="text" onChange={(e) => setID(e.target.value)} />
+            <label>Price: </label>
+            <input type="text" onChange={(e) => setPrice(e.target.value)} />
+            <button onClick={() => listForSale()}>List Coin for Sale</button>
+            <button onClick={() => unlistFromSale()}>Unlist Coin from Sale</button>
         </div>     
       
     );

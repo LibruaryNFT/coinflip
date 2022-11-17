@@ -17,9 +17,6 @@ mint_nft.cdc
     flow transactions send ./cadence/transactions/mint_nft.cdc 01cf0e2f2f715450 0 0
     flow transactions send ./cadence/transactions/mint_nft.cdc 0af01d98f61b53df 0 0 --network=testnet --signer=testnet-account
 
-setup_account.cdc
-
-
 play_game.cdc
 
     flow transactions send ./cadence/transactions/play_game.cdc 0 --signer=Alice
@@ -38,7 +35,7 @@ flip_coin.cdc
 
 flip_coins.cdc
 
-flow transactions send ./cadence/transactions/flip_coins.cdc
+    flow transactions send ./cadence/transactions/flip_coins.cdc
 
 
 add_coingame.cdc

@@ -13,6 +13,7 @@ get_collection_length.cdc
 
     flow scripts execute ./cadence/scripts/get_collection_length.cdc f8d6e0586b0a20c7
     flow scripts execute ./cadence/scripts/get_collection_length.cdc 01cf0e2f2f715450
+    
 
     Result: 1
 
@@ -54,3 +55,7 @@ get_metadata.cdc - Broken
     "https://bafybeibuqzhuoj6ychlckjn6cgfb5zfurggs2x7pvvzjtdcmvizu2fg6ga.ipfs.dweb.link/sm.png", itemID: 0, resourceID: 0, kind: 0, rarity: 
     0, owner: 0xf8d6e0586b0a20c7)
 
+check_coincollection.cdc
+
+    flow scripts execute ./cadence/scripts/check_coincollection.cdc f8d6e0586b0a20c7
+    flow scripts execute ./cadence/scripts/check_coincollection.cdc 0x28b2715c085b4a79 --network=testnet

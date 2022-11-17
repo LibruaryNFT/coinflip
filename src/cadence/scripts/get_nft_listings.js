@@ -1,8 +1,8 @@
 export const getNFTListings = `
 
 import NonFungibleToken from 0x631e88ae7f1d7c20
-import Coin from 0xf14637e23022698a
-import NFTMarketplace from 0xf14637e23022698a
+import Coin from 0x9582fcd59741438c
+import NFTMarketplace from 0x9582fcd59741438c
 
 // This script returns an array of all the NFT IDs in an account's collection.
 

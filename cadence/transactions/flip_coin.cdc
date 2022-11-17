@@ -28,7 +28,8 @@ transaction(coinID: UInt64) {
         self.provider = signer.borrow<&{FungibleToken.Provider}>(from: /storage/flowTokenVault) 
             ?? panic("Could not borrow vault.")
 
-        let adminaddress:Address= 0xf8d6e0586b0a20c7
+        // Hardcoded
+        let adminaddress:Address= 0x9582fcd59741438c
 
         let collection = getAccount(adminaddress).getCapability(/public/CoinCollection)
                     .borrow<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>()

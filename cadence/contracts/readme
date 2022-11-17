@@ -7,28 +7,6 @@ NFTMarketplace
 /public/SaleCollection
 /storage/SaleCollection
 
-1. Setup coin
-
-flow transactions send ./cadence/transactions/setup_coin.cdc
-
-- checks if Coin.Collection exists in Coin.CollectionStoragePath (/storage/CoinCollection)
-- if it doesn't then it creates an emptyCollection
-    pub fun createEmptyCollection(): @Collection {
-        return <- create Collection()
-    }
-- Collection is saved to Coin.CollectionStoragePath (/storage/CoinCollection)
-- A link is created , need further explanation here:
-    signer.link<&{NonFungibleToken.CollectionPublic, Coin.CollectionPublic, MetadataViews.ResolverCollection}>(
-            Coin.CollectionPublicPath,
-            target: Coin.CollectionStoragePath
-
-2. Mint NFT
-
-flow transactions send ./cadence/transactions/mint_nft.cdc f8d6e0586b0a20c7 0 0 "name" "desc" "thumb" []
-
-- borrows minter object from account from Coin.MinterStoragePath (/storage/CoinMinter)
-- borrows recipients public Coin.CollectionPublicPath/NonFungibleToken.CollectionPublic capability
- 
  Quick start
  Bob: 0x179b6b1cb6755e31
 
@@ -81,15 +59,46 @@ Testnet Deployment
 3. Store these keys safely
 4. Update flow.json testnet-account with the private key and address
 5. Ensure flow.json has the right contracts to be deployed
-6. Update flow.json aliases if needed
-6. flow deploy project --network=testnet
-7. Verify contracts are deployed https://testnet.flowscan.org/account/0xf59a7e2d7b36c96f
-7. flow transactions send ./cadence/transactions/setup.cdc --signer=testnet-account --network=testnet
-8. Run twice
-flow transactions send ./cadence/transactions/mint_nft.cdc 0xf59a7e2d7b36c96f 0 0 --signer=testnet-account --network=testnet
-9. flow scripts execute ./cadence/scripts/get_nfts.cdc 0xf59a7e2d7b36c96f --network=testnet
-10. flow transactions send ./cadence/transactions/list_for_sale.cdc 0 1.0 --signer=testnet-account --network=testnet
-11. flow scripts execute ./cadence/scripts/get_nft_listings.cdc 0xf59a7e2d7b36c96f --network=testnet
-12. flow transactions send ./cadence/transactions/list_for_sale.cdc 1 1.0 --signer=testnet-account --network=testnet
-13. flow scripts execute ./cadence/scripts/get_nft_listings.cdc 0xf59a7e2d7b36c96f --network=testnet
-14. flow scripts execute ./cadence/scripts/get_nfts.cdc 0xf59a7e2d7b36c96f --network=testnet
+6. Update hardcoded values
+
+    Hardcoded values
+    
+    Coin.cdc
+    292 - play
+    424 - getKind 
+    472 - flipCoin
+
+    flip_coin.cdc
+    31 - admin address
+
+    flip_coins.cdc
+
+    coinmonitor.bat
+    3 - admins collection
+
+    CoinCollection-Bet
+
+    
+
+7. Update flow.json aliases if needed
+8. flow deploy project --network=testnet
+
+9. Verify contracts are deployed https://testnet.flowscan.org/account/0x9582fcd59741438c
+
+10. Create a new email account for the storefront
+coinflip1155@protonomail.com
+
+11. Sign in to the dapp
+
+12. Fund new storefront with some flow from the faucet https://testnet-faucet-v2.onflow.org/
+0x28b2715c085b4a79
+
+13. Update all the js script imports for the coin/nftmarketplace contracts
+
+14. Click the setup button for the storefront account
+
+15. Mint a bunch of NFTs of different types 
+flow transactions send ./cadence/transactions/mint_nft.cdc 0x28b2715c085b4a79 0 0 --signer=testnet-account --network=testnet
+
+16. As the storefront, list all the NFTs
+

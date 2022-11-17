@@ -1,6 +1,6 @@
 export const listNFT = `
 
-import NFTMarketplace from 0xf14637e23022698a
+import NFTMarketplace from 0x9582fcd59741438c
 
 transaction(id: UInt64, price: UFix64) {
     prepare(acct: AuthAccount) {
