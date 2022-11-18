@@ -2,6 +2,35 @@
 
 This dapp allows a user to purchase a Coin(NFT) which is either Heads or Tails, and then they can 'flip it'. If the random outcome on-chain is the same type as their Coin, then they win double the value of the coin back(while losing the coin that was bet).
 
+# Build
+
+This is a react dapp using tailwindcss.
+
+# File Structure
+
+/cadence
+    /contracts
+    /scripts
+    /transactions
+    /utilities
+/dist
+/public
+/src
+    /cadence
+        /scripts
+        /transactions
+/components
+/dist
+/img
+/js
+Admin.js
+App.css
+index.css
+index.html
+index.js
+coinmonitor.bat
+tailwind.config.js
+
 # Emulator Quick Start Guide
 Use this to get started on the emulator and test the major functionality
 
