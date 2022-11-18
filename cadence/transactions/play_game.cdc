@@ -4,7 +4,7 @@ import Coin from "./../contracts/Coin.cdc"
 // This transaction transfers a CoinFlip Item from one account to another.
 // https://github.com/onflow/kitty-items/blob/master/cadence/transactions/kittyItems/transfer_kitty_item.cdc
 
-transaction(withdrawID: UInt64) {
+transaction(withdrawID: UInt64, admin: Address) {
 
     prepare(signer: AuthAccount) {
         
@@ -13,7 +13,7 @@ transaction(withdrawID: UInt64) {
             ?? panic("Could not borrow a reference to the owner's collection")
         
         // receiverCap = capability , receiverCap2 = address
-        coins.play(withdrawID:withdrawID, receiverCap:signer.address)
+        coins.play(withdrawID:withdrawID, receiverCap:signer.address, admin: admin)
     }
  
     execute {

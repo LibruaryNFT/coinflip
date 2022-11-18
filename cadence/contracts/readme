@@ -1,3 +1,5 @@
+Storage Reference
+
 Coin
 CollectionStoragePath = /storage/CoinCollection
 CollectionPublicPath = /public/CoinCollection
@@ -8,7 +10,7 @@ NFTMarketplace
 /storage/SaleCollection
 
  Quick start
- Bob: 0x179b6b1cb6755e31
+ Use this to get started on the emulator and test the major functionality
 
  1. flow emulator start -v
  2. flow deploy project
@@ -17,68 +19,46 @@ NFTMarketplace
  5. update flow.json
  6. flow transactions send ./cadence/transactions/setup.cdc
  7. flow transactions send ./cadence/transactions/setup.cdc --signer=Alice
- 8. Run twice
+ 8. Run three times
  flow transactions send ./cadence/transactions/mint_nft.cdc f8d6e0586b0a20c7 0 0
- 9. Run twice
-flow transactions send ./cadence/transactions/mint_nft.cdc 01cf0e2f2f715450 0 0
-10. flow transactions send ./cadence/transactions/list_for_sale.cdc 0 1.0
-11. Expect tokens 0,1
+9. Run for Tokens 0,1,2
+flow transactions send ./cadence/transactions/list_for_sale.cdc 0 1.0
+10. Expect tokens 0,1,2
 flow scripts execute ./cadence/scripts/get_nft_details.cdc f8d6e0586b0a20c7
-12. Expect tokens 2,3
-flow scripts execute ./cadence/scripts/get_nft_details.cdc 01cf0e2f2f715450
-13. Expect token 0
+11. Expect token 0,1,2
 flow scripts execute ./cadence/scripts/get_nft_listings.cdc f8d6e0586b0a20c7
-14. Expect {}
-flow scripts execute ./cadence/scripts/get_nft_listings.cdc 01cf0e2f2f715450
-15. flow transactions send ./cadence/utilities/fundEmulator.cdc f8d6e0586b0a20c7 1000.0
-16. flow transactions send ./cadence/utilities/fundEmulator.cdc 01cf0e2f2f715450 1000.0
-17. flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 0 --signer=Alice
-18. Expect tokens 1
+12. flow transactions send ./cadence/utilities/fundEmulator.cdc f8d6e0586b0a20c7 1000.0
+13. flow transactions send ./cadence/utilities/fundEmulator.cdc 01cf0e2f2f715450 1000.0
+14. flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 0 --signer=Alice
+15. Expect tokens 1,2
 flow scripts execute ./cadence/scripts/get_nft_details.cdc f8d6e0586b0a20c7
-19. Expect tokens 0,2,3
+16. Expect token 0
 flow scripts execute ./cadence/scripts/get_nft_details.cdc 01cf0e2f2f715450
-20. Expect {}}
-flow scripts execute ./cadence/scripts/get_nft_listings.cdc f8d6e0586b0a20c7
-21. Expect {}
-flow scripts execute ./cadence/scripts/get_nft_listings.cdc 01cf0e2f2f715450
-22. flow transactions send ./cadence/transactions/transfer.cdc f8d6e0586b0a20c7 0 --signer=Alice
-23. Expect tokens 0,1
-flow scripts execute ./cadence/scripts/get_nft_details.cdc f8d6e0586b0a20c7
-24. Expect tokens 2,3
-flow scripts execute ./cadence/scripts/get_nft_details.cdc 01cf0e2f2f715450
-25. flow transactions send ./cadence/transactions/transfer.cdc 01cf0e2f2f715450 1
-26. Expect tokens 0
-flow scripts execute ./cadence/scripts/get_nft_details.cdc f8d6e0586b0a20c7
-27. Expect tokens 1,2,3
-flow scripts execute ./cadence/scripts/get_nft_details.cdc 01cf0e2f2f715450
+17. Run for tokens 1,2
+flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 1 --signer=Alice
+18. Play game
+flow transactions send ./cadence/transactions/play_game.cdc 0 0xf8d6e0586b0a20c7 --signer=Alice
+19. Admin flips coin
+flow transactions send ./cadence/transactions/flip_coin.cdc 0
+20. Play the game for tokens 2,3
+21. Admin flips coins
 
 Testnet Deployment
+Admin: 0x9582fcd59741438c
+Storefront: 0x28b2715c085b4a79
 
 1. flow keys generate
 2. Enter public key: https://testnet-faucet-v2.onflow.org/
 3. Store these keys safely
 4. Update flow.json testnet-account with the private key and address
 5. Ensure flow.json has the right contracts to be deployed
-6. Update hardcoded values
+6. Update hardcoded values in scripts/txns
 
-    Hardcoded values
-    
-    Coin.cdc
-    292 - play
-    424 - getKind 
-    472 - flipCoin
+    Hardcoded admin values
 
     flip_coin.cdc
-    31 - admin address
-
     flip_coins.cdc
-
     coinmonitor.bat
-    3 - admins collection
-
-    CoinCollection-Bet
-
-    
 
 7. Update flow.json aliases if needed
 8. flow deploy project --network=testnet

@@ -22,18 +22,23 @@ transaction(coinID: UInt64) {
 
         // borrow a reference to the CoinFlipper resource in storage
         self.flipper = signer.borrow<&Coin.CoinFlipper>(from: /storage/CoinFlipper)
-            ?? panic("Could not borrow a reference to the CoinFlipper.")
+            ?? panic("Could not borrow a reference to the CoinFlipper. flip_coin error.")
         
         // borrow a reference to the flowTokenVault of the signer
         self.provider = signer.borrow<&{FungibleToken.Provider}>(from: /storage/flowTokenVault) 
-            ?? panic("Could not borrow vault.")
+            ?? panic("Could not borrow vault. flip_coin error.")
 
         // Hardcoded
-        let adminaddress:Address= 0x9582fcd59741438c
+        //let adminaddress:Address= 0x9582fcd59741438c
+        let adminaddress:Address= 0xf8d6e0586b0a20c7
 
         let collection = getAccount(adminaddress).getCapability(/public/CoinCollection)
                     .borrow<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>()
-                    ?? panic("Can't get the User's collection.")
+                    ?? panic("Can't get the User's collection. flip_coin error.")
+
+             // borrow a reference to the signer's NFT collection
+       // let collection = signer.borrow<&Coin.Collection>(from: Coin.CollectionStoragePath)
+       //     ?? panic("Could not borrow a reference to the owner's collection. Flip Coin error.")          
 
         let itemID = coinID
 
@@ -52,7 +57,7 @@ transaction(coinID: UInt64) {
           //  ?? panic("Could not get receiver reference to the NFT Collection")
 
         
-        var coinresult = self.flipper.flipCoin(coinID: coinID)
+        var coinresult = self.flipper.flipCoin(coinID: coinID, address: adminaddress)
 
         log("CoinResult")
         log(coinresult)

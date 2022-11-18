@@ -22,9 +22,8 @@ const Footer = () => {
 
             <div className="flex justify-around space-x-32">
                 <div className="flex flex-col space-y-3 text-white">
-                    <a href="#" className="hover:text-fuchsia-600">Home</a>
-                    <a href="#" className="hover:text-fuchsia-600">Games</a>
-                    <a href="#" className="hover:text-fuchsia-600">News</a>
+                    <a href="index.html" className="hover:text-fuchsia-600">Home</a>
+                    <a href="index.js" className="hover:text-fuchsia-600">CoinFlip</a>
                 </div>
                 <div className="flex flex-col space-y-3 text-white">
                     <img src="https://nbatopshot.com/static/img/flow.svg" />

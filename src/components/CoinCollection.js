@@ -42,7 +42,8 @@ function CoinCollection(props) {
     const transactionId = await fcl.send([
         fcl.transaction(playGame),
         fcl.args([
-          fcl.arg(parseInt(id), t.UInt64)
+          fcl.arg(parseInt(id), t.UInt64),
+          fcl.arg(0x9582fcd59741438c, t.Address)
         ]),
         fcl.payer(fcl.authz),
         fcl.proposer(fcl.authz),

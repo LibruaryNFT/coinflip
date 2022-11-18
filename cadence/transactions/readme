@@ -19,7 +19,8 @@ mint_nft.cdc
 
 play_game.cdc
 
-    flow transactions send ./cadence/transactions/play_game.cdc 0 --signer=Alice
+    flow transactions send ./cadence/transactions/play_game.cdc 0 0xf8d6e0586b0a20c7 
+    flow transactions send ./cadence/transactions/play_game.cdc 0 0xf8d6e0586b0a20c7 --signer=Alice
 
 setup_sales.cdc
 

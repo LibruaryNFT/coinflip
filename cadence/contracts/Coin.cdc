@@ -97,7 +97,7 @@ pub contract Coin: NonFungibleToken {
         let collection = getAccount(from)
             .getCapability(Coin.CollectionPublicPath)!
             .borrow<&Coin.Collection{Coin.CollectionPublic}>()
-            ?? panic("Couldn't get collection")
+            ?? panic("Couldn't get collection. Coin Fetch error.")
         // We trust Coin.Collection.borrowEntireNFT to get the correct itemID
         // (it checks it before returning it).
         return collection.borrowEntireNFT(id: itemID)
@@ -271,7 +271,7 @@ pub contract Coin: NonFungibleToken {
         }
 
         // User sets the sendBy field on the NFT to their address and then sends it to the admin
-        pub fun play(withdrawID:UInt64, receiverCap:Address ) {
+        pub fun play(withdrawID:UInt64, receiverCap:Address, admin:Address ) {
                    
             // Withdraw Coin from signers collection
             let token <- self.withdraw(withdrawID: withdrawID) as! @Coin.NFT
@@ -286,7 +286,7 @@ pub contract Coin: NonFungibleToken {
             // get the Admin's &Coin.Collection
             // Hardcoded
 
-            let recipient = getAccount(0x9582fcd59741438c)
+            let recipient = getAccount(admin)
             let depositRef = recipient.getCapability(Coin.CollectionPublicPath).borrow<&Coin.Collection{Coin.CollectionPublic}>()!
 
             depositRef.deposit(token: <- token)
@@ -416,9 +416,8 @@ pub contract Coin: NonFungibleToken {
             return coinFlip           
         }
 
-        pub fun getKind(itemID:UInt64) : UInt8{
+        pub fun getKind(itemID:UInt64, address:Address) : UInt8{
 
-            let address : Address = 0x9582fcd59741438c
             let nftRef : &Coin.NFT = Coin.fetch(address, itemID: itemID)!
             // kind 0 = heads, 1 = tails
             log("Kind")
@@ -462,11 +461,9 @@ pub contract Coin: NonFungibleToken {
         // receiver: &AnyResource{NonFungibleToken.CollectionPublic},
 
         pub fun flipCoin(
-            coinID: UInt64
+            coinID: UInt64,
+            address:Address
             ) : UInt64 {
-
-            // admin must own the NFT
-            let address : Address = 0x9582fcd59741438c
 
             // generate unsafeRandom number
             var randomNum : UInt64 = self.randomNum()
@@ -475,7 +472,7 @@ pub contract Coin: NonFungibleToken {
             var coinFlip : UInt64 = self.coinFlip(unsafeRand: randomNum)
             
              // get the kind of the NFT with a given ID
-            var nftkind : UInt8 = self.getKind(itemID: coinID)
+            var nftkind : UInt8 = self.getKind(itemID: coinID, address:address)
 
             // final result of this function is a boolean whether the guess was correct or not
             var coinresult : UInt64 = self.determineResult(nftkind: nftkind, coinFlip: coinFlip)
