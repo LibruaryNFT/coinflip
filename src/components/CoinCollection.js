@@ -5,19 +5,24 @@ import * as fcl from "@onflow/fcl";
 import * as t from "@onflow/types";
 import {getNFTDetails} from "../cadence/scripts/get_nft_details.js";
 import {getUserTotal} from "../cadence/scripts/get_collection_length.js";
+import {checkCoinCollection} from "../cadence/scripts/check_coincollection.js";
 
 import {useEffect, useState} from 'react';
 import {playGame} from "../cadence/transactions/play_game.js";
+import SetupAccount from './SetupAccount';
 
 function CoinCollection(props) {
   const [nfts, setNFTs] = useState([]);
   const[usersupply, setUserSupply] = useState('');
 
+
   useEffect(() => {
+      
       getTheNFTDetails();
       getTheUserTotal();
 
   }, [props.address]);
+
 
   const getTheNFTDetails = async () => {
       const result = await fcl.send([
@@ -26,9 +31,9 @@ function CoinCollection(props) {
               fcl.arg(props.address, t.Address)
           ])
       ]).then(fcl.decode);
-
-      console.log(result);
+      
       setNFTs(result);
+      console.log("getTheNFTDetails", result);
   }
   const getTheUserTotal = async () => {
     const result = await fcl.send([
@@ -36,6 +41,7 @@ function CoinCollection(props) {
       fcl.args([fcl.currentUser])
     ]).then(fcl.decode);
     setUserSupply(result)
+    console.log("getTheUserTotal", result);
   }
 
   const play = async (id) => {
@@ -50,29 +56,31 @@ function CoinCollection(props) {
         fcl.authorizations([fcl.authz]),
         fcl.limit(9999)
       ]).then(fcl.decode);
-  
-      console.log(transactionId);
+      
+      console.log("play transactionId", transactionId);
       return fcl.tx(transactionId).onceSealed();
   }
+
 
 
  
   return (
 
-    <div className="flex flex-col text-center font-bold  bg-blue-400">
-      <h3 className="text-white">Your number of coins: {usersupply}</h3>
-      {nfts.map(nft => (
-        <div key={nft.id}>
-          <h3>ID: {nft.id}</h3>
-          <h3>Kind: {nft.kind.rawValue}</h3>
-          <h3>Rarity: {nft.rarity.rawValue}</h3>
-          <button onClick={() => play(nft.id)}>Flip this Coin!</button>
+    
+          <div className="flex flex-col text-center font-bold  bg-blue-400">
+            <h3 className="text-white">Your number of coins: {usersupply}</h3>
+            {nfts.map(nft => (
+              <div key={nft.id}>
+                <h3>ID: {nft.id}</h3>
+                <h3>Kind: {nft.kind.rawValue}</h3>
+                <h3>Rarity: {nft.rarity.rawValue}</h3>
+                <button onClick={() => play(nft.id)}>Flip this Coin!</button>
 
-        </div>
-      ))}
-    </div>
+              </div>
+            ))}
+          </div>
 
-  );
+);
 
   
 }

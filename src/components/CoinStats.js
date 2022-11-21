@@ -17,11 +17,8 @@ function CoinStats() {
   
   useEffect(() => {
 
-    const onload = async () => {
-      getTheSupply();
-    }
+    getTheSupply();
     
-    onload();
 
   }, [])
   

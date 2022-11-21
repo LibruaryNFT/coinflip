@@ -6,6 +6,15 @@ This dapp allows a user to purchase a Coin(NFT) which is either Heads or Tails, 
 
 This is a react dapp using tailwindcss.
 
+# Pre-Requisites
+
+nodejs
+
+# Building App
+
+npm install react-scripts
+npm start
+
 # File Structure
 
 /cadence

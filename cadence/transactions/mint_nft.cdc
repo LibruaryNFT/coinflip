@@ -19,11 +19,9 @@ transaction(recipient: Address, kind: UInt8, rarity: UInt8) {
     }
 
     execute {
-        // get the public account object for the recipient
-        let recipient = getAccount(recipient)
 
         // borrow the recipient's public NFT collection reference
-        let receiver = recipient
+        let receiver = getAccount(recipient)
             .getCapability(Coin.CollectionPublicPath)
             .borrow<&Coin.Collection{Coin.CollectionPublic}>()
             ?? panic("Could not get receiver reference to the NFT Collection.")

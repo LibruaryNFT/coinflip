@@ -1,7 +1,7 @@
 import NonFungibleToken from "./NonFungibleToken.cdc"
 import Coin from "./Coin.cdc"
 import FungibleToken from "./FungibleToken.cdc"
-import FlowToken from "./FlowToken.cdc"
+import FlowToken from 	"./FlowToken.cdc"
 
 pub contract NFTMarketplace {
 

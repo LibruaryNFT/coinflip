@@ -10,11 +10,11 @@ const Footer = () => {
                     Copyright &copy; 2022, All Rights Reserved
                 </div>
                 <div>
-                    <img src="https://flowbook.dev/logo2.png" className="h-24" />
+                    <img src="https://flowbook.dev/logo2.png" alt="" className="h-24" />
                 </div>
                 <div className="flex justify-center space-x-4">
-                    <a href="#">
-                    <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/9/9f/Twitter_bird_logo_2012.svg/1200px-Twitter_bird_logo_2012.svg.png" className="h-8 mt-12" />
+                    <a href="http://www.twitter.com" aria-label="twitter logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/9/9f/Twitter_bird_logo_2012.svg/1200px-Twitter_bird_logo_2012.svg.png" alt="" className="h-8 mt-12" />
                     </a>
                 </div>
             </div>
@@ -26,7 +26,7 @@ const Footer = () => {
                     <a href="index.js" className="hover:text-fuchsia-600">CoinFlip</a>
                 </div>
                 <div className="flex flex-col space-y-3 text-white">
-                    <img src="https://nbatopshot.com/static/img/flow.svg" />
+                    <img src="https://nbatopshot.com/static/img/flow.svg" alt=""/>
                 </div>
             </div>
         </div>

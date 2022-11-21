@@ -15,11 +15,6 @@ function SetupAccount() {
 
   useEffect(() => {
 
-    const onload = async () => {
-    }
-    
-    onload();
-
   }, [])
 
 
