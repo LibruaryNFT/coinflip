@@ -1,5 +1,7 @@
 @echo off
 
+CD C:/code/coinflip/coinflip
+
 FOR /F "tokens=*" %%g IN ('flow scripts execute ./cadence/scripts/get_collection_length.cdc 0x9582fcd59741438c --network=testnet -o inline') do (SET VAR=%%g)
 SET /A VAR_NUM=%VAR%
 
