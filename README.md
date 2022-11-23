@@ -147,6 +147,8 @@ get_nft_details.cdc
 
     flow scripts execute ./cadence/scripts/get_nft_details.cdc f8d6e0586b0a20c7
     flow scripts execute ./cadence/scripts/get_nft_details.cdc 01cf0e2f2f715450
+    flow scripts execute ./cadence/scripts/get_nft_details.cdc 0xb5d3705b4021c2ea --network=testnet
+    flow scripts execute ./cadence/scripts/get_nft_details.cdc 0x9582fcd59741438c --network=testnet
 
     [A.f8d6e0586b0a20c7.Coin.NFT(uuid: 26, id: 0, kind: A.f8d6e0586b0a20c7.Coin.Kind(rawValue: 0), rarity: A.f8d6e0586b0a20c7.Coin.Rarity(rawValue: 0), 
     sentBy: {0: Capability<&AnyResource{A.f8d6e0586b0a20c7.NonFungibleToken.Receiver}>(address: 0x179b6b1cb6755e31, path: /public/CoinCollection)})]
@@ -157,6 +159,8 @@ get_nft_listings.cdc
 
     flow scripts execute ./cadence/scripts/get_nft_listings.cdc f8d6e0586b0a20c7
     flow scripts execute ./cadence/scripts/get_nft_listings.cdc 01cf0e2f2f715450
+    flow scripts execute ./cadence/scripts/get_nft_listings.cdc 0xb5d3705b4021c2ea --network=testnet
+    flow scripts execute ./cadence/scripts/get_nft_listings.cdc 0x9582fcd59741438c --network=testnet
 
     Result: {0: A.f8d6e0586b0a20c7.NFTMarketplace.SaleItem(price: 1.00000000, nftRef: A.f8d6e0586b0a20c7.Coin.NFT(uuid: 26, id: 0, 
     kind: A.f8d6e0586b0a20c7.Coin.Kind(rawValue: 0), rarity: A.f8d6e0586b0a20c7.Coin.Rarity(rawValue: 0)))}
@@ -205,7 +209,7 @@ mint_nft.cdc
 
     flow transactions send ./cadence/transactions/mint_nft.cdc f8d6e0586b0a20c7 0 0
     flow transactions send ./cadence/transactions/mint_nft.cdc 01cf0e2f2f715450 0 0
-    flow transactions send ./cadence/transactions/mint_nft.cdc 0af01d98f61b53df 0 0 --network=testnet --signer=testnet-account
+    flow transactions send ./cadence/transactions/mint_nft.cdc 0xb5d3705b4021c2ea 0 0 --network=testnet --signer=testnet-account
 
 play_game.cdc
 

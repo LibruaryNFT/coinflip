@@ -48,7 +48,7 @@ function App() {
         fcl.script(getBalance),
         fcl.args([fcl.currentUser])
       ]).then(fcl.decode);
-      setBalance(result)
+      setBalance(result);
       console.log("Balance", result);
   }
 
@@ -57,9 +57,10 @@ function App() {
         fcl.script(checkCoinCollection),
         fcl.args([fcl.currentUser])
       ]).then(fcl.decode);
-      setCheckCoinCollection(result)
+      setCheckCoinCollection(result);
       console.log("checkcoincollection", result);
   }
+
 
   return (
     
@@ -98,44 +99,43 @@ function App() {
             </div>
         </div>
       </div>        
+                  
 
 
-      <div className="flex flex-col text-center font-bold  bg-blue-400">
-        <h1 className="text-white text-4xl">Your Coin Collection</h1>
+
+      <div className="flex flex-col text-center font-bold text-white bg-purple-400">
+        <h1 className="text-white text-4xl text-center">Instructions</h1>
+      
+
+        { user.loggedIn == true && coincollectioncheck == false
+        ?
+        <SetupAccount/>
+        :
+        null
+        }
+
+        { user.loggedIn == null
+        ?
+        <div className="font-bold">Connect Wallet to view your Coin Collection.</div>
+        :
+        null
+        }
+
+        <div className="font-bold">Click 'Flip this Coin!' under a Coin in your Coin Collection.</div>  
+
       </div>
-
+      
+      
+                    
       { user.loggedIn == true && coincollectioncheck == true
         ?
         <CoinCollection address={user.addr}></CoinCollection>
         :
         null
       }
-
-      { user.loggedIn == true && coincollectioncheck == false
-        ?
-        <div>zzzzz</div>
-        :
-        null
-      }
-
-      { user.loggedIn == false
-        ?
-        <div>Connect Wallet to view your Coin Collection.</div>
-        :
-        null
-      }
-                      
-    
-
-   
-
-
-      <div className="flex flex-col text-center font-bold  bg-green-400">
-        <h1 className="text-white text-4xl">Coin Marketplace</h1>
-      </div>
-
+                    
       <SaleCollection address="0xb5d3705b4021c2ea"/>
-
+      
       <Footer/>
    
     </div>

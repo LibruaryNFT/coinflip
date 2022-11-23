@@ -29,7 +29,7 @@ transaction() {
             ?? panic("Could not borrow vault. flip_coins error.")
 
         // Hardcoded
-        let adminaddress:Address=0xf8d6e0586b0a20c7
+        let adminaddress:Address=0x9582fcd59741438c
 
         let collection = getAccount(adminaddress).getCapability(/public/CoinCollection)
                     .borrow<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>()

@@ -45,6 +45,13 @@ function SaleCollection(props) {
   }
  
   return (
+    <div>
+    <div className="flex flex-col text-center font-bold  bg-green-400">
+        <h1 className="text-white text-4xl">Coin Marketplace</h1>
+      </div>
+      <div className="flex flex-col text-center font-bold  bg-green-400">
+        <h1 className="text-white">Purchase these coins in order to play the CoinFlip game.</h1>
+      </div>
     <div className="flex flex-col text-center font-bold bg-green-400">
       
        {Object.keys(nfts).map(nftID => (
@@ -56,6 +63,7 @@ function SaleCollection(props) {
               <button onClick={() => purchase(nftID)}>Purchase this Coin</button><br></br>
           </div>
       ))}
+    </div>
     </div>
   );
 }

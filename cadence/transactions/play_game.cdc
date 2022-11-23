@@ -12,7 +12,7 @@ transaction(withdrawID: UInt64, admin: Address) {
         let coins = signer.borrow<&Coin.Collection>(from: Coin.CollectionStoragePath)
             ?? panic("Could not borrow a reference to the owner's collection")
         
-        // receiverCap = capability , receiverCap2 = address
+        // Provide the tokenID, the signer's address to attach to the NFT, and the admin address
         coins.play(withdrawID:withdrawID, receiverCap:signer.address, admin: admin)
     }
  
