@@ -7,6 +7,7 @@ import {getNFTDetails} from "../cadence/scripts/get_nft_details.js";
 import {getUserTotal} from "../cadence/scripts/get_collection_length.js";
 
 import {useEffect, useState} from 'react';
+import GraffleSDK from '@graffle/flow-livestream-sdk';
 import {playGame} from "../cadence/transactions/play_game.js";
 
 import Transaction from "./Transaction.js";
@@ -17,6 +18,7 @@ function CoinCollection(props) {
   const[txId, setTxId] = useState();
   const[txInProgress, setTxInProgress] = useState(false);
   const[txStatus, setTxStatus] = useState(-1);
+  const[flipEvents, setFlipEvents] = useState();
 
 
   useEffect(() => {
@@ -26,6 +28,23 @@ function CoinCollection(props) {
 
   }, [props.address]);
 
+  const clientConfig = {
+    projectId: '6fc17a55-6975-4586-b5b5-d39e7a1bec52',
+    apiKey: 'dd6325db33b24f21bb99ae520485cd41'
+  };
+
+  // or `const streamSDK = new GraffleSDK(clientConfig);` for main net
+  const streamSDK = new GraffleSDK(clientConfig, true);
+
+  const displayEvent = (message) => {
+    console.log(message);
+    setFlipEvents(message);
+    //display/process the event here
+  };
+
+  useEffect(() => {
+    streamSDK.stream(displayEvent);
+  }, []);
 
   const getTheNFTDetails = async () => {
       const result = await fcl.send([
@@ -80,6 +99,7 @@ function CoinCollection(props) {
         <div>
           <div className="flex flex-col text-center font-bold  bg-red-400">
               <h1 className="text-white text-4xl">CoinFlip Gaming Area</h1>
+              <h3>Flip Events: {flipEvents}</h3>
           </div>
           <div className="flex flex-col text-center font-bold  bg-red-400">
             <h1 className="text-white">This area will show your game on-chain and in real-time.</h1>
@@ -99,6 +119,7 @@ function CoinCollection(props) {
                 <h3>ID: {nft.id}</h3>
                 <h3>Kind: {nft.kind.rawValue}</h3>
                 <h3>Rarity: {nft.rarity.rawValue}</h3>
+                <img style={{width: "100px"}} src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} />
                 <button onClick={() => play(nft.id)}>Flip this Coin!</button>
 
               </div>

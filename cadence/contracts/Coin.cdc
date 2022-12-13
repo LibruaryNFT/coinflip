@@ -10,7 +10,7 @@ pub contract Coin: NonFungibleToken {
     pub event ContractInitialized()
     pub event Withdraw(id: UInt64, from: Address?)
     pub event Deposit(id: UInt64, to: Address?)
-    pub event Minted(id: UInt64, kind: UInt8, rarity: UInt8)
+    pub event Minted(id: UInt64, kind: UInt8, rarity: UInt8, _ipfsHash: String)
     pub event CoinDestroyed(id: UInt64)
     pub event CoinFlipGame(CoinID id: UInt64, CoinGuess kind: UInt8, RandomNumberGenerated randomNum: UInt64, ConvertedRandom coinFlip: UInt64, Result0Win1Lose coinresult: UInt64)
 
@@ -117,25 +117,28 @@ pub contract Coin: NonFungibleToken {
         // Token Rarity (Bronze, Silver, Gold)
         pub let rarity: Rarity 
 
-       pub var sentBy : Address
+        pub let ipfsHash: String
+
+        pub var sentBy : Address
         
-        init(id: UInt64, kind: Kind, rarity: Rarity) {
+        init(id: UInt64, kind: Kind, rarity: Rarity, _ipfsHash : String) {
             self.id = id
             self.kind = kind
             self.rarity = rarity
+            self.ipfsHash = _ipfsHash
             self.sentBy = 0x0
         }
 
          // Gets the imageCID from the initialization. For example, for a bronze heads: "bafybeibuqzhuoj6ychlckjn6cgfb5zfurggs2x7pvvzjtdcmvizu2fg6ga",
         pub fun imageCID(): String {
             return Coin.images[self.kind]![self.rarity]!
-        }
+       }
 
         // takes the above imageCID concatenates it with the hard-coded path sm.png. For example: "bafybeibuqzhuoj6ychlckjn6cgfb5zfurggs2x7pvvzjtdcmvizu2fg6ga/sm.png"
         // this is stored as a IPFSFile and is used with a function, dwebURL, to add the https:// and the ipfs.dweb.link portion
         // the dwebURL function requires a IPFSFile 
         pub fun thumbnail(): MetadataViews.IPFSFile {
-          return MetadataViews.IPFSFile(cid: self.imageCID(), path: "sm.png")
+          return MetadataViews.IPFSFile(cid: self.imageCID(), path: "")
         }
 
         pub fun dwebURL(_ file: MetadataViews.IPFSFile): String {
@@ -200,7 +203,7 @@ pub contract Coin: NonFungibleToken {
                         thumbnail: self.thumbnail()
                     )
             }
-
+        
             return nil
         }
     }
@@ -365,14 +368,16 @@ pub contract Coin: NonFungibleToken {
             recipient: &Coin.Collection{Coin.CollectionPublic}, 
             kind: Kind, 
             rarity: Rarity,
+            ipfsHash: String,
             ) {
             // deposit it in the recipient's account using their reference
-            recipient.deposit(token: <-create Coin.NFT(id: Coin.totalSupply, kind: kind, rarity: rarity))
+            recipient.deposit(token: <-create Coin.NFT(id: Coin.totalSupply, kind: kind, rarity: rarity, _ipfsHash : ipfsHash))
 
             emit Minted(
                 id: Coin.totalSupply,
                 kind: kind.rawValue,
                 rarity: rarity.rawValue,
+                _ipfsHash: ipfsHash,
             )
 
             Coin.totalSupply = Coin.totalSupply + (1 as UInt64)
@@ -501,14 +506,14 @@ pub contract Coin: NonFungibleToken {
         // set imageCID
         self.images = {
             Kind.heads: {
-                Rarity.bronze: "bafybeibuqzhuoj6ychlckjn6cgfb5zfurggs2x7pvvzjtdcmvizu2fg6ga",
-                Rarity.silver: "bafybeihbminj62owneu3fjhtqm7ghs7q2rastna6srqtysqmjcsicmn7oa",
-                Rarity.gold: "bafybeid73gt3qduwn2hhyy4wzhsvt6ahzmutiwosfd3f6t5el6yjqqxd3u"
+                Rarity.bronze: "bafybeigvkyawijvieedj4ret74nyeixo32nl54apw6zlgurjpkzsvo36xe",
+               Rarity.silver: "bafybeia72ddoemwi7537nauougruz3czzphlnf5crdqajqs3miko6icwi4",
+                Rarity.gold: "bafybeie2fpbqp7yx43xcj2wszpkvelcasrioeekptqxreyygv756tgb2g4"
             },
             Kind.tails: {
-                Rarity.bronze: "bafybeigu4ihzm7ujgpjfn24zut6ldrn7buzwqem27ncqupdovm3uv4h4oy",
-                Rarity.silver: "bafybeih6eaczohx3ibv22bh2fsdalc46qaqty6qapums6zhelxet2gfc24",
-                Rarity.gold: "bafybeid2r5q3vfrsluv7iaelqobkihfopw5t4sv4z2llxsoe3xqfynl73u"
+               Rarity.bronze: "bafybeifraraokwjwpyvfypprleumli2n32xfijbcexjneb6rj6yyzifnzi",
+                Rarity.silver: "bafybeicxt4ymw7tpcsuyqsjbsxh6qtcytrkwusjc67nc5lhxmg2rjno7qq",
+                Rarity.gold: "bafybeiajkmzyfju6se4ny5yp6xo2ayi4ue6ne6hhg74qz6kccog7owvetu"
             }
         }
 
