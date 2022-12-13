@@ -49,7 +49,7 @@ Use this to get started on the emulator and test the major functionality
  4. flow accounts create --key PublicKey
  5. update flow.json
  6. flow transactions send ./cadence/transactions/setup.cdc
- 7. flow transactions send ./cadence/transactions/setup.cdc --signer=Alice
+ 7. flow transactions send ./cadence/transactions/setup.cdc --signer=justin
  8. Run three times
  flow transactions send ./cadence/transactions/mint_nft.cdc f8d6e0586b0a20c7 0 0
 9. Run for Tokens 0,1,2
@@ -60,15 +60,15 @@ flow scripts execute ./cadence/scripts/get_nft_details.cdc f8d6e0586b0a20c7
 flow scripts execute ./cadence/scripts/get_nft_listings.cdc f8d6e0586b0a20c7
 12. flow transactions send ./cadence/utilities/fundEmulator.cdc f8d6e0586b0a20c7 1000.0
 13. flow transactions send ./cadence/utilities/fundEmulator.cdc 01cf0e2f2f715450 1000.0
-14. flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 0 --signer=Alice
+14. flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 0 --signer=justin
 15. Expect tokens 1,2
 flow scripts execute ./cadence/scripts/get_nft_details.cdc f8d6e0586b0a20c7
 16. Expect token 0
 flow scripts execute ./cadence/scripts/get_nft_details.cdc 01cf0e2f2f715450
 17. Run for tokens 1,2
-flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 1 --signer=Alice
+flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 1 --signer=justin
 18. Play game
-flow transactions send ./cadence/transactions/play_game.cdc 0 0xf8d6e0586b0a20c7 --signer=Alice
+flow transactions send ./cadence/transactions/play_game.cdc 0 0xf8d6e0586b0a20c7 --signer=justin
 19. Admin flips coin
 flow transactions send ./cadence/transactions/flip_coin.cdc 0
 20. Play the game for tokens 2,3
@@ -197,13 +197,13 @@ check_coincollection.cdc
 setup_coin.cdc
 
     flow transactions send ./cadence/transactions/setup_coin.cdc
-    flow transactions send ./cadence/transactions/setup_coin.cdc --signer=Alice
+    flow transactions send ./cadence/transactions/setup_coin.cdc --signer=justin
     flow transactions send ./cadence/transactions/setup_coin.cdc --signer=testnet-account --network=testnet
 
 setup_coingame.cdc
 
     flow transactions send ./cadence/transactions/setup_coingame.cdc
-    flow transactions send ./cadence/transactions/setup_coingame.cdc --signer=Alice
+    flow transactions send ./cadence/transactions/setup_coingame.cdc --signer=justin
 
 mint_nft.cdc
 
@@ -214,7 +214,7 @@ mint_nft.cdc
 play_game.cdc
 
     flow transactions send ./cadence/transactions/play_game.cdc 0 0xf8d6e0586b0a20c7 
-    flow transactions send ./cadence/transactions/play_game.cdc 0 0xf8d6e0586b0a20c7 --signer=Alice
+    flow transactions send ./cadence/transactions/play_game.cdc 0 0xf8d6e0586b0a20c7 --signer=justin
 
 setup_sales.cdc
 
@@ -224,7 +224,7 @@ setup_sales.cdc
 flip_coin.cdc
 
     flow transactions send ./cadence/transactions/flip_coin.cdc f8d6e0586b0a20c7 0
-    flow transactions send ./cadence/transactions/flip_coin.cdc f8d6e0586b0a20c7 0 --signer=Alice
+    flow transactions send ./cadence/transactions/flip_coin.cdc f8d6e0586b0a20c7 0 --signer=justin
     flow transactions send ./cadence/transactions/flip_coin.cdc 01cf0e2f2f715450 0
     flow transactions send ./cadence/transactions/flip_coin.cdc 0x37bbbe2ca948ac9e 0 --network=testnet --signer=testnet-account
 
@@ -236,24 +236,24 @@ flip_coins.cdc
 add_coingame.cdc
 
     flow transactions send ./cadence/transactions/add_coingame.cdc 0 f8d6e0586b0a20c7
-    flow transactions send ./cadence/transactions/add_coingame.cdc 0 f8d6e0586b0a20c7 --signer=Alice
+    flow transactions send ./cadence/transactions/add_coingame.cdc 0 f8d6e0586b0a20c7 --signer=justin
 
 remove_coingame.cdc
 
     flow transactions send ./cadence/transactions/remove_coingame.cdc 0 
-    flow transactions send ./cadence/transactions/remove_coingame.cdc 0 --signer=Alice
+    flow transactions send ./cadence/transactions/remove_coingame.cdc 0 --signer=justin
 
 
 list_for_sale.cdc
 
     flow transactions send ./cadence/transactions/list_for_sale.cdc 0 1.0
-    flow transactions send ./cadence/transactions/list_for_sale.cdc 0 1.0 --signer=Alice
+    flow transactions send ./cadence/transactions/list_for_sale.cdc 0 1.0 --signer=justin
     flow transactions send ./cadence/transactions/list_for_sale.cdc 0 1.0 --signer=testnet-account --network=testnet
 
 unlist_from_sale.cdc
 
     flow transactions send ./cadence/transactions/unlist_from_sale.cdc 0
-    flow transactions send ./cadence/transactions/unlist_from_sale.cdc 0 --signer=Alice
+    flow transactions send ./cadence/transactions/unlist_from_sale.cdc 0 --signer=justin
 
 setup.cdc
 
@@ -263,11 +263,11 @@ setup.cdc
 purchase.cdc
 
     flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 0
-    flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 0 --signer=Alice
+    flow transactions send ./cadence/transactions/purchase.cdc f8d6e0586b0a20c7 0 --signer=justin
 
 send_coin.cdc
 
-    flow transactions send ./cadence/transactions/send_coin.cdc f8d6e0586b0a20c7 0 --signer=Alice
+    flow transactions send ./cadence/transactions/send_coin.cdc f8d6e0586b0a20c7 0 --signer=justin
     flow transactions send ./cadence/transactions/send_coin.cdc 01cf0e2f2f715450 1
     flow transactions send ./cadence/transactions/send_coin.cdc a316f82dd1e5fd4e 1 --network=testnet --signer=testnet-account
 
