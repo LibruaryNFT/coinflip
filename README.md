@@ -76,8 +76,8 @@ flow transactions send ./cadence/transactions/flip_coin.cdc 0
 
 # Testnet Deployment
 
-Admin: 0x9582fcd59741438c
-Storefront: 0x28b2715c085b4a79
+Admin: 0x91b3acc974ec2f7d
+Storefront: 0xf788ae5c7ec2d1ae
 
 1. flow keys generate
 2. Enter public key: https://testnet-faucet-v2.onflow.org/
@@ -95,21 +95,22 @@ Storefront: 0x28b2715c085b4a79
 7. Update flow.json aliases if needed
 8. flow deploy project --network=testnet
 
-9. Verify contracts are deployed https://testnet.flowscan.org/account/0x9582fcd59741438c
+9. Verify contracts are deployed https://testnet.flowscan.org/account/0x91b3acc974ec2f7d
 
 10. Create a new email account for the storefront
 
 11. Sign in to the dapp
 
 12. Fund new storefront with some flow from the faucet https://testnet-faucet-v2.onflow.org/
-0x28b2715c085b4a79
 
 13. Update all the js script imports for the coin/nftmarketplace contracts
 
 14. Click the setup button for the storefront account
 
-15. Mint a bunch of NFTs of different types 
-flow transactions send ./cadence/transactions/mint_nft.cdc 0x28b2715c085b4a79 0 0 --signer=testnet-account --network=testnet
+15. Mint a bunch of NFTs of different bronze coins, both heads and tails
+flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 0 0 bafybeigvkyawijvieedj4ret74nyeixo32nl54apw6zlgurjpkzsvo36xe --signer=testnet-account --network=testnet
+
+flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 1 0 bafybeifraraokwjwpyvfypprleumli2n32xfijbcexjneb6rj6yyzifnzi --signer=testnet-account --network=testnet
 
 16. As the storefront, list all the NFTs
 
