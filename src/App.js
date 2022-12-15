@@ -134,7 +134,7 @@ function App() {
         null
       }
                     
-      <SaleCollection address="0xb5d3705b4021c2ea"/>
+      <SaleCollection address="0xf788ae5c7ec2d1ae"/>
       
       <Footer/>
       <AdminStore/>

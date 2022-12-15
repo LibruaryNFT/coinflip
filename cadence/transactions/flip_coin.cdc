@@ -29,7 +29,7 @@ transaction(coinID: UInt64) {
             ?? panic("Could not borrow vault. flip_coin error.")
 
         // Hardcoded
-        //let adminaddress:Address= 0x9582fcd59741438c
+        //let adminaddress:Address= 0x91b3acc974ec2f7d
         let adminaddress:Address= 0xf8d6e0586b0a20c7
 
         let collection = getAccount(adminaddress).getCapability(/public/CoinCollection)

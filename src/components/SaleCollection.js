@@ -56,11 +56,12 @@ function SaleCollection(props) {
       
        {Object.keys(nfts).map(nftID => (
           <div key={nftID}>
+              <img className="mx-auto" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`} />
+              <button onClick={() => purchase(nftID)}>Purchase this Coin</button><br></br>
               <h3>ID: {nftID}</h3>
               <h3>Kind: {nfts[nftID].nftRef.kind.rawValue}</h3>
               <h3>Rarity: {nfts[nftID].nftRef.rarity.rawValue}</h3>
               <h3>Price: {nfts[nftID].price}</h3>
-              <button onClick={() => purchase(nftID)}>Purchase this Coin</button><br></br>
           </div>
       ))}
     </div>
