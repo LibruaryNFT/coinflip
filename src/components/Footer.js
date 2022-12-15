@@ -10,7 +10,7 @@ const Footer = () => {
                     Copyright &copy; 2022, All Rights Reserved
                 </div>
                 <div>
-                    <img src="https://flowbook.dev/logo2.png" alt="" className="h-24" />
+                    <a href="main.html"><img src="https://flowbook.dev/logo2.png" alt="" className="h-24" /></a>
                 </div>
                 <div className="flex justify-center space-x-4">
                     <a href="http://www.twitter.com" aria-label="twitter logo">
@@ -22,7 +22,7 @@ const Footer = () => {
 
             <div className="flex justify-around space-x-32">
                 <div className="flex flex-col space-y-3 text-white">
-                    <a href="index.html" className="hover:text-fuchsia-600">Home</a>
+                    <a href="home.html" className="hover:text-fuchsia-600">Token Games</a>
                     <a href="index.js" className="hover:text-fuchsia-600">CoinFlip</a>
                 </div>
                 <div className="flex flex-col space-y-3 text-white">
