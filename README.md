@@ -208,9 +208,9 @@ setup_coingame.cdc
 
 mint_nft.cdc
 
-    flow transactions send ./cadence/transactions/mint_nft.cdc f8d6e0586b0a20c7 0 0
-    flow transactions send ./cadence/transactions/mint_nft.cdc 01cf0e2f2f715450 0 0
-    flow transactions send ./cadence/transactions/mint_nft.cdc 0xb5d3705b4021c2ea 0 0 --network=testnet --signer=testnet-account
+    flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 0 0 bafybeigvkyawijvieedj4ret74nyeixo32nl54apw6zlgurjpkzsvo36xe --signer=testnet- account --network=testnet
+
+flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 1 0 bafybeifraraokwjwpyvfypprleumli2n32xfijbcexjneb6rj6yyzifnzi --signer=testnet-account --network=testnet
 
 play_game.cdc
 
