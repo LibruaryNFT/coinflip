@@ -121,7 +121,9 @@ function App() {
         null
         }
 
-        <div className="font-bold">Click 'Flip this Coin!' under a Coin in your Coin Collection.</div>  
+        <div className="font-bold">1. Buy a coin from the Coin Marketplace.<br></br>
+        2. Copy your Account Address and then use https://testnet-faucet-v2.onflow.org/fund-account to fund your account.<br></br>
+        2. Click 'Flip this Coin!' under a Coin in your Coin Collection.</div>  
 
       </div>
       

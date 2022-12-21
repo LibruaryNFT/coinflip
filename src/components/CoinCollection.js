@@ -11,6 +11,7 @@ import {getUserTotal} from "../cadence/scripts/get_collection_length.js";
 import {useEffect, useState, useRef} from 'react';
 import GraffleSDK from '@graffle/flow-livestream-sdk';
 import {playGame} from "../cadence/transactions/play_game.js";
+import axios from "axios";
 
 import Transaction from "./Transaction.js";
 
@@ -25,6 +26,7 @@ function CoinCollection(props) {
   const [connection, setConnection] = useState(null);
   const [chat, setChat] = useState([]);
   const latestChat = useRef(null);
+  const [eventsData, setEventsData] = useState([])
 
   useEffect(() => {
       
@@ -34,7 +36,7 @@ function CoinCollection(props) {
   }, [props.address]);
 
   const clientConfig = {
-    projectId: '6fc17a55-6975-4586-b5b5-d39e7a1bec52',
+    projectId: '041706f7-3ded-4e39-9697-87544103a856',
     apiKey: 'dd6325db33b24f21bb99ae520485cd41'
   };
 
@@ -65,6 +67,19 @@ function CoinCollection(props) {
       , 10000);
   }, []);
 
+  useEffect(() => {
+    const getEvents = async () => {
+        // console.log("getSales fired")
+        let data
+        let res = await axios
+            .get("https://prod-test-net-dashboard-api.azurewebsites.net/api/company/6fc17a55-6975-4586-b5b5-d39e7a1bec52/search?eventType=A.91b3acc974ec2f7d.Coin.CoinFlipGame")
+        data = res.data
+        setEventsData(data)
+    }
+    getEvents()
+  }, [])
+
+  console.log(eventsData);
 
   const getTheNFTDetails = async () => {
       const result = await fcl.send([
@@ -113,17 +128,78 @@ function CoinCollection(props) {
 
 
 
- 
+
   return (
         
         <div>
-          <div className="flex flex-col text-center font-bold  bg-red-400">
-              <h1 className="text-white text-4xl">CoinFlip Gaming Area</h1>
-              <button onClick={streamSDK.disconnect()}>Disconnect Stream</button>
+          <div className="flex flex-col text-white text-center font-bold  bg-red-400">
+            <h1 className="text-4xl">CoinFlip Results</h1>
+
+            <h2 className="text-2xl">All Previous CoinFlips</h2>
+            <div className="flex flex-col text-center font-bold  bg-red-400">
+              <h1 className="text-white">This shows all previous coin-flips.</h1>
+            </div>
+
+            <table className="text-left table-auto">
+                <tbody>
+                  <tr>
+                    <th>Date</th>
+                    <th>id</th>
+                    <th>kind</th>
+                    <th>randomNum</th>
+                    <th>coinFlip</th>
+                    <th>coinresult</th>
+  
+                  </tr>
+
+                  {eventsData.map((item, id) => (
+                    <tr key={id}>
+                      <td>{item.eventDate}</td>
+                      <td>{item.blockEventData.id}</td>
+                      <td>{item.blockEventData.kind}</td>
+                      <td>{item.blockEventData.randomNum}</td>
+                      <td>{item.blockEventData.coinFlip}</td>
+                      <td>{item.blockEventData.coinresult}</td>
+              
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+
+              <h2 className="text-2xl">Live CoinFlip Results</h2>
+              <div className="flex flex-col text-center font-bold  bg-red-400">
+                  <h1 className="text-white">This shows the result of your coin-flip. It takes upwards of 40 seconds to see the result here.</h1>
+              </div>
+
+              <table className="text-left table-auto">
+                <tbody>
+                  <tr>
+                    <th>Date</th>
+                    <th>id</th>
+                    <th>kind</th>
+                    <th>randomNum</th>
+                    <th>coinFlip</th>
+                    <th>coinresult</th>
+  
+                  </tr>
+
+                  {chat.map((item, id) => (
+                    <tr key={id}>
+                      <td>{item.eventDate}</td>
+                      <td>{item.blockEventData.id}</td>
+                      <td>{item.blockEventData.kind}</td>
+                      <td>{item.blockEventData.randomNum}</td>
+                      <td>{item.blockEventData.coinFlip}</td>
+                      <td>{item.blockEventData.coinresult}</td>
+              
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              
           </div>
-          <div className="flex flex-col text-center font-bold  bg-red-400">
-            <h1 className="text-white">This area will show your game on-chain and in real-time.</h1>
-          </div>
+          
           <Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/>
 
           <div className="flex flex-col text-center font-bold  bg-blue-400">
@@ -142,8 +218,7 @@ function CoinCollection(props) {
                 <button onClick={() => play(nft.id)}>Flip this Coin!</button>
                 <h3>ID: {nft.id}</h3>
                 <h3>Kind: {nft.kind.rawValue}</h3>
-                <h3>Rarity: {nft.rarity.rawValue}</h3>
-                
+                <h3>Rarity: {nft.rarity.rawValue}</h3> 
 
               </div>
 
