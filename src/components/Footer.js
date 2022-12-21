@@ -10,7 +10,7 @@ const Footer = () => {
                     Copyright &copy; 2022, All Rights Reserved
                 </div>
                 <div>
-                    <a href="main.html"><img src="https://flowbook.dev/logo2.png" alt="" className="h-24" /></a>
+                    <a href="main.html"><img src="" alt="" className="h-24" /></a>
                 </div>
                 <div className="flex justify-center space-x-4">
                     <a href="http://www.twitter.com" aria-label="twitter logo">

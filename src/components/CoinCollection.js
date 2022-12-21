@@ -203,22 +203,29 @@ function CoinCollection(props) {
             <h1 className="text-white text-4xl">Your Coin Collection</h1>
           </div>
           <div className="flex flex-col text-center font-bold  bg-blue-400">
-            <h2 className="text-white">Your number of coins: {usersupply}</h2>
+            <h2 className="text-white">Your total number of coins: {usersupply}</h2>
             
-            {nfts.map(nft => (
+            <table className="text-left table-fixed border-collapse text-white">
+                <tbody>
+                  <tr className="border">
+                    <th className="border">Coin Details</th>
+                    <th className="border">Play the Game!</th>
+                    <th className="border">TokenID</th>
+                    <th className="border">Prediction Type</th>             
+                  </tr>
 
-              <div key={nft.id}>
-                <img className="mx-auto" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} />
-                <button onClick={() => play(nft.id)}>Flip this Coin!</button>
-                <h3>ID: {nft.id}</h3>
-                <h3>Kind: {nft.kind.rawValue}</h3>
-                <h3>Rarity: {nft.rarity.rawValue}</h3> 
-
-              </div>
-
-            ))}
-
-
+                  {nfts.map(nft => (
+                    <tr key={nft.id} className="border">
+                      <img className="border" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`}/>
+                      <td className="border"><button onClick={() => play(nft.id)}>Flip this Coin!</button></td>
+                      <td className="border">ID: {nft.id}</td>
+                      <td className="border">{nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</td>
+                 
+              
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
 
 
           </div>

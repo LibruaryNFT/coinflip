@@ -81,18 +81,30 @@ function SaleCollection(props) {
       </div>
       <div className="flex flex-col text-center font-bold bg-green-400">
       
-       {
-       Object.keys(nfts).map(nftID => (
-        <div key={nfts[nftID].nftRef.id}>
-          <img className="mx-auto" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`} />
-          <button onClick={() => purchase(nftID)}>Purchase this Coin</button><br></br>
-          <h3>ID: {nfts[nftID].nftRef.id}</h3>
-          <h3>Kind: {nfts[nftID].nftRef.kind.rawValue}</h3>
-          <h3>Rarity: {nfts[nftID].nftRef.rarity.rawValue}</h3>
-          <h3>Price: {nfts[nftID].price}</h3>
-        </div>
-      ))
-      }
+
+      <table className="text-left table-fixed border-collapse text-white">
+                <tbody>
+                  <tr className="border">
+                    <th className="border">Coin Details</th>
+                    <th className="border">Purchase</th>
+                    <th className="border">TokenID</th>
+                    <th className="border">Prediction Type</th>  
+                    <th className="border">Price in $FLOW</th>             
+                  </tr>
+
+                  {Object.keys(nfts).map(nftID => (
+                    <tr key={nfts[nftID].nftRef.id} className="border">
+                      <img className="border" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`}/>
+                      <td className="border"><button onClick={() => purchase(nftID)}>Purchase this Coin</button></td>
+                      <td className="border">{nfts[nftID].nftRef.id}</td>
+                      <td className="border">{nfts[nftID].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}</td>
+                      <td className="border">{Math.round(nfts[nftID].price)}</td>
+              
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
       </div>
     </div>
   );
