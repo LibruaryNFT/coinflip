@@ -12,7 +12,7 @@ pub contract Coin: NonFungibleToken {
     pub event Deposit(id: UInt64, to: Address?)
     pub event Minted(id: UInt64, kind: UInt8, rarity: UInt8, _ipfsHash: String)
     pub event CoinDestroyed(id: UInt64)
-    pub event CoinFlipGame(CoinID id: UInt64, CoinGuess kind: UInt8, RandomNumberGenerated randomNum: UInt64, ConvertedRandom coinFlip: UInt64, Result0Win1Lose coinresult: UInt64)
+    pub event CoinFlipGame(CoinID id: UInt64, CoinGuess kind: UInt8, RandomNumberGenerated randomNum: UInt64, ConvertedRandom coinFlip: UInt64, Result0Win1Lose coinresult: UInt64, Player: Address)
 
 // ------------------------------------------------------------------
 // Named Paths
@@ -425,21 +425,20 @@ pub contract Coin: NonFungibleToken {
 
             let nftRef : &Coin.NFT = Coin.fetch(address, itemID: itemID)!
             // kind 0 = heads, 1 = tails
-            log("Kind")
-            log(nftRef.kind.rawValue) 
-            if (nftRef.kind.rawValue == 0) {
-                log("Coin Bet Kind: Heads")
-            }
-
-            else {
-                log("Coin Bet Kind: Tails")
-            }
             return nftRef.kind.rawValue
+        }
+
+        pub fun getPlayer(itemID:UInt64, address:Address) : Address{
+
+            let nftRef : &Coin.NFT = Coin.fetch(address, itemID: itemID)!
+            
+            return nftRef.sentBy
         }
 
         pub fun determineResult(nftkind:UInt8, coinFlip:UInt64) : UInt64{       
 
             var coinresult : UInt64 = 2
+            
             var coinFlipstr = coinFlip.toString()
             var nftkindstr = nftkind.toString()        
 
@@ -447,14 +446,12 @@ pub contract Coin: NonFungibleToken {
             // if it is equal, they are a winner
             if coinFlipstr == nftkindstr {
                 coinresult = 0
-                log("WINNER! You guessed the correct outcome of the coin flip!")
-                log(coinresult)
+                       
                 } else {
 
             // if it is not equal, they are a loser
                 coinresult = 1
-                log("LOSER! You incorrectly guessed the outcome of the coin flip.")
-                log(coinresult)
+                         
             }  
 
             return coinresult
@@ -473,14 +470,18 @@ pub contract Coin: NonFungibleToken {
             // generate unsafeRandom number
             var randomNum : UInt64 = self.randomNum()
 
-            // convert unsafeRand to a 0 or 1 , 0 if it is odd , 1 if it is even 
+            // convert unsafeRand to a 0 or 1 , 0 if it is even , 1 if it is odd 
             var coinFlip : UInt64 = self.coinFlip(unsafeRand: randomNum)
             
              // get the kind of the NFT with a given ID
             var nftkind : UInt8 = self.getKind(itemID: coinID, address:address)
 
-            // final result of this function is a boolean whether the guess was correct or not
+            // get the player of the NFT with a given ID
+            var player : Address = self.getPlayer(itemID: coinID, address:address)
+
+            // final result of this function is whether the guess was correct(0) or not(1)
             var coinresult : UInt64 = self.determineResult(nftkind: nftkind, coinFlip: coinFlip)
+
 
             emit CoinFlipGame(
                 CoinID: coinID,
@@ -488,6 +489,7 @@ pub contract Coin: NonFungibleToken {
                 RandomNumberGenerated: randomNum,
                 ConvertedRandom: coinFlip,
                 Result0Win1Lose: coinresult,
+                Player: player,
             )
 
             return coinresult

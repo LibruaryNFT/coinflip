@@ -132,34 +132,33 @@ function CoinCollection(props) {
   return (
         
         <div>
-          <div className="flex flex-col text-white text-center font-bold  bg-red-400">
-            <h1 className="text-4xl">CoinFlip Results</h1>
+          <div className="flex flex-col text-white font-bold  bg-red-400">
+            <h1 className="text-4xl text-center">CoinFlip Results</h1>
 
             <h2 className="text-2xl">All Previous CoinFlips</h2>
-            <div className="flex flex-col text-center font-bold  bg-red-400">
-              <h1 className="text-white">This shows all previous coin-flips.</h1>
-            </div>
 
-            <table className="text-left table-auto">
+            <table className="table-auto text-left border">
                 <tbody>
-                  <tr>
-                    <th>Date</th>
-                    <th>id</th>
-                    <th>kind</th>
-                    <th>randomNum</th>
-                    <th>coinFlip</th>
-                    <th>coinresult</th>
-  
+                  <tr className="border">
+                    <th className="border">Date</th>
+                    <th className="border">Player</th>
+                    <th className="border">TokenID</th>
+                    <th className="border">Prediction</th>
+                    <th className="border">CoinFlip</th>
+                    <th className="border">Result</th>              
                   </tr>
 
                   {eventsData.map((item, id) => (
-                    <tr key={id}>
-                      <td>{item.eventDate}</td>
-                      <td>{item.blockEventData.id}</td>
-                      <td>{item.blockEventData.kind}</td>
-                      <td>{item.blockEventData.randomNum}</td>
-                      <td>{item.blockEventData.coinFlip}</td>
-                      <td>{item.blockEventData.coinresult}</td>
+                    <tr key={id} className="border">
+                      <td className="border">{item.eventDate.slice(0, 19)}</td>
+                      <td className="border">{item.blockEventData.player}</td>
+                      <td className="border">{item.blockEventData.id}</td>
+                      <td className="border">{item.blockEventData.kind == 0 ? 'Heads' : 'Tails'}</td>
+                      <td className="border">{item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails'}</td>
+                      <td className="border">{item.blockEventData.coinresult == 0 ? 'Winner' : 'Loser'}</td>
+                   
+                      
+                      
               
                     </tr>
                   ))}
@@ -167,31 +166,29 @@ function CoinCollection(props) {
               </table>
 
 
-              <h2 className="text-2xl">Live CoinFlip Results</h2>
-              <div className="flex flex-col text-center font-bold  bg-red-400">
-                  <h1 className="text-white">This shows the result of your coin-flip. It takes upwards of 40 seconds to see the result here.</h1>
-              </div>
+              <h2 className="text-2xl">Your Live CoinFlip Results</h2>
+              
 
-              <table className="text-left table-auto">
+              <table className="text-left table-fixed border-collapse">
                 <tbody>
-                  <tr>
-                    <th>Date</th>
-                    <th>id</th>
-                    <th>kind</th>
-                    <th>randomNum</th>
-                    <th>coinFlip</th>
-                    <th>coinresult</th>
-  
+                  <tr className="border">
+                    <th className="border">Date</th>
+                    <th className="border">Player</th>
+                    <th className="border">TokenID</th>
+                    <th className="border">Prediction</th>
+                    <th className="border">CoinFlip</th>
+                    <th className="border">Result</th>              
                   </tr>
 
                   {chat.map((item, id) => (
-                    <tr key={id}>
-                      <td>{item.eventDate}</td>
-                      <td>{item.blockEventData.id}</td>
-                      <td>{item.blockEventData.kind}</td>
-                      <td>{item.blockEventData.randomNum}</td>
-                      <td>{item.blockEventData.coinFlip}</td>
-                      <td>{item.blockEventData.coinresult}</td>
+                    <tr key={id} className="border">
+                      <td className="border">{item.eventDate.slice(0, 19)}</td>
+                      <td className="border">{item.blockEventData.player}</td>
+                      <td className="border">{item.blockEventData.id}</td>
+                      <td className="border">{item.blockEventData.kind == 0 ? 'Heads' : 'Tails'}</td>
+                      <td className="border">{item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails'}</td>
+                      <td className="border">{item.blockEventData.coinresult == 0 ? 'Winner' : 'Loser'}</td>
+                     
               
                     </tr>
                   ))}
@@ -206,10 +203,7 @@ function CoinCollection(props) {
             <h1 className="text-white text-4xl">Your Coin Collection</h1>
           </div>
           <div className="flex flex-col text-center font-bold  bg-blue-400">
-            <h1 className="text-white">This is your collection of Coins.</h1>
-          </div>
-          <div className="flex flex-col text-center font-bold  bg-blue-400">
-            <h3 className="text-white">Your number of coins: {usersupply}</h3>
+            <h2 className="text-white">Your number of coins: {usersupply}</h2>
             
             {nfts.map(nft => (
 

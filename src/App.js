@@ -103,7 +103,7 @@ function App() {
 
 
 
-      <div className="flex flex-col text-center font-bold text-white bg-purple-400">
+      <div className="flex flex-col font-bold text-white bg-purple-400">
         <h1 className="text-white text-4xl text-center">Instructions</h1>
       
 
