@@ -1,3 +1,6 @@
+import '../App.css';
+import '../dist/output.css';
+
 function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
 
   if (txInProgress) {
@@ -9,11 +12,14 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
 
                     <div>
                         <span>
-                            Transaction Status: <kbd>Initializing</kbd>
+                            Transaction Status: Initializing
                             <br/>
-                            <small>Waiting for transaction approval.</small>
+                            <small>Waiting for transaction approval to send coin to be flipped.</small>
                         </span>
-                        <progress indeterminate="true">Initializing</progress>
+                        <br/>           
+                        <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div className="bg-blue-600 h-2.5 rounded-full" style={{width: '0%'}}></div>
+                        </div>
                     </div>
 
                 : txStatus < 2
@@ -27,11 +33,14 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             <span className="txId">
                                 <a href={`https://testnet.flowscan.org/transaction/${txId}`} target="_blank">{txId}</a>
                             </span>
-                        <kbd>Pending</kbd>
+                        Pending
                         <br/>
-                        <small>The transaction is currently pending.</small>
+                        <small>The transaction to send the coin to be flipped is currently pending.</small>
                         </span>
-                    <progress indeterminate="true">Finalizing...</progress>
+                        <br/>
+                        <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div className="bg-blue-600 h-2.5 rounded-full" style={{width: '25%'}}></div>
+                        </div>
                     </div> 
 
                 :
@@ -45,11 +54,14 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             <span className="txId">
                                 <a href={`https://testnet.flowscan.org/transaction/${txId}`} target="_blank">{txId}</a>
                             </span>
-                        <kbd>Finalized</kbd>
+                        Finalized
                         <br/>
-                        <small>The transaction is currently executing.</small>
+                        <small>The transaction to send the coin to be flipped is currently executing.</small>
                         </span>
-                        <progress min="0" max="100" value="60">Executing...</progress>
+                        <br/>
+                        <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div className="bg-blue-600 h-2.5 rounded-full" style={{width: '50%'}}></div>
+                        </div>
                     </div> 
 
                 : txStatus === 3
@@ -62,11 +74,14 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             <span className="txId">
                                 <a href={`https://testnet.flowscan.org/transaction/${txId}`} target="_blank">{txId?.slice(0,8)}...</a>
                             </span>
-                            <kbd>Executed</kbd>
+                            Executed
                             <br />
-                            <small>The transaction is currently sealing.</small>
+                            <small>The transaction to send the coin to be flipped is currently sealing.</small>
                         </span>
-                        <progress min="0" max="100" value="80">Sealing...</progress>
+                        <br/>
+                        <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div className="bg-blue-600 h-2.5 rounded-full" style={{width: '75%'}}></div>
+                        </div>
                     </div>
 
                 : txStatus === 4
@@ -79,11 +94,14 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                         <span className="txId">
                             <a href={`https://testnet.flowscan.org/transaction/${txId}`} target="_blank">{txId?.slice(0,8)}...</a>
                         </span>
-                            <kbd>Sealed</kbd>
+                            Sealed
                             <br />
-                            <small>Transaction Complete. At this point the transaction result has been committed to the blockchain.</small>
+                            <small>Transaction Complete. At this point the transaction result has been committed to the blockchain. The coin has been sent to the admin and is awaiting to be flipped in queue.</small>
                         </span>
-                    <progress min="0" max="100" value="100">Sealing!</progress>
+                        <br/>
+                        <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                            <div className="bg-blue-600 h-2.5 rounded-full" style={{width: '100%'}}></div>
+                        </div>
                     </div>
 
                  : null}

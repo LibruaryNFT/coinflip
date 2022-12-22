@@ -80,31 +80,27 @@ function SaleCollection(props) {
         <h1 className="text-white">Purchase these coins in order to play the CoinFlip game.</h1>
       </div>
       <div className="flex flex-col text-center font-bold bg-green-400">
-      
+        <table className="text-left table-fixed border-collapse text-white">
+          <tbody>
+            <tr className="border">
+              <th className="border">Coin Details</th>
+              <th className="border">Purchase</th>
+              <th className="border">TokenID</th>
+              <th className="border">Prediction Type</th>  
+              <th className="border">Price in $FLOW</th>             
+            </tr>
 
-      <table className="text-left table-fixed border-collapse text-white">
-                <tbody>
-                  <tr className="border">
-                    <th className="border">Coin Details</th>
-                    <th className="border">Purchase</th>
-                    <th className="border">TokenID</th>
-                    <th className="border">Prediction Type</th>  
-                    <th className="border">Price in $FLOW</th>             
-                  </tr>
-
-                  {Object.keys(nfts).map(nftID => (
-                    <tr key={nfts[nftID].nftRef.id} className="border">
-                      <img className="border" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`}/>
-                      <td className="border"><button onClick={() => purchase(nftID)}>Purchase this Coin</button></td>
-                      <td className="border">{nfts[nftID].nftRef.id}</td>
-                      <td className="border">{nfts[nftID].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}</td>
-                      <td className="border">{Math.round(nfts[nftID].price)}</td>
-              
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-
+            {Object.keys(nfts).map(nftID => (
+              <tr key={nfts[nftID].nftRef.id} className="border">
+                <img className="border" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`}/>
+                <td className="border"><button onClick={() => purchase(nftID)}>Purchase this Coin</button></td>
+                <td className="border">{nfts[nftID].nftRef.id}</td>
+                <td className="border">{nfts[nftID].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}</td>
+                <td className="border">{Math.round(nfts[nftID].price)}</td>  
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

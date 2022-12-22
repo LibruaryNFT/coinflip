@@ -158,10 +158,6 @@ function CoinCollection(props) {
                       <td className="border">{item.blockEventData.kind == 0 ? 'Heads' : 'Tails'}</td>
                       <td className="border">{item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails'}</td>
                       <td className="border">{item.blockEventData.coinresult == 0 ? 'Winner' : 'Loser'}</td>
-                   
-                      
-                      
-              
                     </tr>
                   ))}
                 </tbody>
@@ -169,12 +165,14 @@ function CoinCollection(props) {
 
 
               <h2 className="text-2xl">Your Live CoinFlip Results</h2>
-              
+              <h2 className="flex flex-col text-white font-bold  bg-red-400">Step 1: Sending Coin to be Flipped Transaction Details</h2>
+                <div className="flex flex-col text-white font-bold bg-red-400"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></div>
 
               <table className="text-left table-fixed border-collapse">
                 <tbody>
                   <tr className="border">
                     <th className="border">Date</th>
+                    <th className="border">Status</th>
                     <th className="border">Player</th>
                     <th className="border">TokenID</th>
                     <th className="border">Prediction</th>
@@ -184,14 +182,13 @@ function CoinCollection(props) {
 
                   {chat.map((item, id) => (
                     <tr key={id} className="border">
-                      <td className="border"><a href={`https://testnet.flowscan.org/transaction/${item.flowTransactionId}`} target="_blank">{item.eventDate.slice(0, 19)}</a></td>
+                      <td className="border hover:bg-sky-700"><a href={`https://testnet.flowscan.org/transaction/${item.flowTransactionId}`} target="_blank">{item.eventDate.slice(0, 19)}</a></td>
+                      <td className="border">{item.blockEventData.player == null ? 'Coin sent.' : 'Coin Flipped!'}</td>
                       <td className="border">{item.blockEventData.player == null ? 'Pending' : item.blockEventData.player}</td>
                       <td className="border">{item.blockEventData.id}</td>
                       <td className="border">{item.blockEventData.kind == null ? 'Pending' : (item.blockEventData.kind == 0 ? 'Heads' : 'Tails')}</td>
                       <td className="border">{item.blockEventData.coinFlip == null ? 'Pending' : (item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails')}</td>
-                      <td className="border">{item.blockEventData.coinresult == null ? 'Pending' : (item.blockEventData.coinresult == 0 ? 'Winner' : 'Loser')}</td>
-                     
-              
+                      <td className="border">{item.blockEventData.coinresult == null ? 'Pending' : (item.blockEventData.coinresult == 0 ? 'Winner' : 'Loser')}</td>                       
                     </tr>
                   ))}
                 </tbody>
@@ -199,8 +196,7 @@ function CoinCollection(props) {
               
           </div>
           
-          <h2 className="text-2xl flex flex-col text-white font-bold  bg-red-400">Your CoinFlip Transaction Details</h2>
-          <div className="flex flex-col text-white font-bold  bg-red-400"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></div>
+          
           
 
           <div className="flex flex-col text-center font-bold  bg-blue-400">
