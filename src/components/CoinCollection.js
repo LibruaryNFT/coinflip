@@ -26,7 +26,8 @@ function CoinCollection(props) {
   const [connection, setConnection] = useState(null);
   const [chat, setChat] = useState([]);
   const latestChat = useRef(null);
-  const [eventsData, setEventsData] = useState([])
+  const [eventsData, setEventsData] = useState([]);
+
 
   useEffect(() => {
       
@@ -79,7 +80,8 @@ function CoinCollection(props) {
     getEvents()
   }, [])
 
-  console.log(eventsData);
+  console.log('eventsData', eventsData);
+
 
   const getTheNFTDetails = async () => {
       const result = await fcl.send([
@@ -135,7 +137,7 @@ function CoinCollection(props) {
           <div className="flex flex-col text-white font-bold  bg-red-400">
             <h1 className="text-4xl text-center">CoinFlip Results</h1>
 
-            <h2 className="text-2xl">All Previous CoinFlips</h2>
+            <h2 className="text-2xl">Recent CoinFlips</h2>
 
             <table className="table-auto text-left border">
                 <tbody>
@@ -150,7 +152,7 @@ function CoinCollection(props) {
 
                   {eventsData.map((item, id) => (
                     <tr key={id} className="border">
-                      <td className="border">{item.eventDate.slice(0, 19)}</td>
+                      <td className="border hover:bg-sky-700"><a href={`https://testnet.flowscan.org/transaction/${item.flowTransactionId}`} target="_blank">{item.eventDate.slice(0, 19)}</a></td>
                       <td className="border">{item.blockEventData.player}</td>
                       <td className="border">{item.blockEventData.id}</td>
                       <td className="border">{item.blockEventData.kind == 0 ? 'Heads' : 'Tails'}</td>
@@ -182,12 +184,12 @@ function CoinCollection(props) {
 
                   {chat.map((item, id) => (
                     <tr key={id} className="border">
-                      <td className="border">{item.eventDate.slice(0, 19)}</td>
-                      <td className="border">{item.blockEventData.player}</td>
+                      <td className="border"><a href={`https://testnet.flowscan.org/transaction/${item.flowTransactionId}`} target="_blank">{item.eventDate.slice(0, 19)}</a></td>
+                      <td className="border">{item.blockEventData.player == null ? 'Pending' : item.blockEventData.player}</td>
                       <td className="border">{item.blockEventData.id}</td>
-                      <td className="border">{item.blockEventData.kind == 0 ? 'Heads' : 'Tails'}</td>
-                      <td className="border">{item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails'}</td>
-                      <td className="border">{item.blockEventData.coinresult == 0 ? 'Winner' : 'Loser'}</td>
+                      <td className="border">{item.blockEventData.kind == null ? 'Pending' : (item.blockEventData.kind == 0 ? 'Heads' : 'Tails')}</td>
+                      <td className="border">{item.blockEventData.coinFlip == null ? 'Pending' : (item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails')}</td>
+                      <td className="border">{item.blockEventData.coinresult == null ? 'Pending' : (item.blockEventData.coinresult == 0 ? 'Winner' : 'Loser')}</td>
                      
               
                     </tr>
@@ -197,7 +199,9 @@ function CoinCollection(props) {
               
           </div>
           
-          <Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/>
+          <h2 className="text-2xl flex flex-col text-white font-bold  bg-red-400">Your CoinFlip Transaction Details</h2>
+          <div className="flex flex-col text-white font-bold  bg-red-400"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></div>
+          
 
           <div className="flex flex-col text-center font-bold  bg-blue-400">
             <h1 className="text-white text-4xl">Your Coin Collection</h1>
@@ -209,16 +213,14 @@ function CoinCollection(props) {
                 <tbody>
                   <tr className="border">
                     <th className="border">Coin Details</th>
-                    <th className="border">Play the Game!</th>
                     <th className="border">TokenID</th>
                     <th className="border">Prediction Type</th>             
                   </tr>
 
                   {nfts.map(nft => (
                     <tr key={nft.id} className="border">
-                      <img className="border" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`}/>
-                      <td className="border"><button onClick={() => play(nft.id)}>Flip this Coin!</button></td>
-                      <td className="border">ID: {nft.id}</td>
+                      <img className="border cursor-pointer" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} onClick={() => play(nft.id)}/>                 
+                      <td className="border">{nft.id}</td>
                       <td className="border">{nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</td>
                  
               

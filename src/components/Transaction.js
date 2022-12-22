@@ -106,4 +106,5 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
     }
 
 
+
 export default Transaction;

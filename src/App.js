@@ -123,7 +123,7 @@ function App() {
 
         <div className="font-bold">1. Buy a coin from the Coin Marketplace.<br></br>
         2. If you need funds, copy your Account Address top right and then use https://testnet-faucet-v2.onflow.org/fund-account to fund your account.<br></br>
-        3. Click 'Flip this Coin!' next to a Coin in your Coin Collection.</div>  
+        3. Click the Coin in your Coin Collection in order to play the game.</div>  
 
       </div>
       

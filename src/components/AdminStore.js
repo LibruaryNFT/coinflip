@@ -73,9 +73,6 @@ function AdminStore() {
             <input type="text" onChange={(e) => setPrice(e.target.value)} />
             <button onClick={() => listForSale()}>List Coin for Sale</button>
             <button onClick={() => unlistFromSale()}>Unlist Coin from Sale</button>
-            <div>
-            
-            </div>
            
           </div>     
           <Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/>
