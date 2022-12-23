@@ -74,29 +74,16 @@ function SaleCollection(props) {
   return (
     <div>
       <div className="flex flex-col text-center font-bold  bg-green-400">
-          <h1 className="text-white text-4xl">Coin Marketplace</h1>
-      </div>
-      <div className="flex flex-col text-center font-bold  bg-green-400">
-        <h1 className="text-white">Purchase these coins in order to play the CoinFlip game.</h1>
+          <h1 className="text-white text-4xl pb-4">Coin Marketplace</h1>
       </div>
       <div className="flex flex-col text-center font-bold bg-green-400">
         <table className="text-left table-fixed border-collapse text-white">
-          <tbody>
-            <tr className="border">
-              <th className="border">Coin Details</th>
-              <th className="border">Purchase</th>
-              <th className="border">TokenID</th>
-              <th className="border">Prediction Type</th>  
-              <th className="border">Price in $FLOW</th>             
-            </tr>
+          <tbody>      
 
             {Object.keys(nfts).map(nftID => (
               <tr key={nfts[nftID].nftRef.id} className="border">
-                <img className="border" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`}/>
-                <td className="border"><button onClick={() => purchase(nftID)}>Purchase this Coin</button></td>
-                <td className="border">{nfts[nftID].nftRef.id}</td>
-                <td className="border">{nfts[nftID].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}</td>
-                <td className="border">{Math.round(nfts[nftID].price)}</td>  
+                <div className="relative text-black"><img className="border cursor-pointer" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`} onClick={() => purchase(nftID)}/><button className="absolute top-0 px-4 py-2 text-white rounded-full md:py-1 bg-purple-600 hover:bg-brightRedLight font-bold">Click to Purchase for {Math.round(nfts[nftID].price)} $FLOW</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nfts[nftID].nftRef.id}</button></div>      
+                 
               </tr>
             ))}
           </tbody>
