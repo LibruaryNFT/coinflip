@@ -23,7 +23,6 @@ function CoinCollection(props) {
   const[txStatus, setTxStatus] = useState(-1);
 
   // graffle
-  const [connection, setConnection] = useState(null);
   const [chat, setChat] = useState([]);
   const latestChat = useRef(null);
   const [eventsData, setEventsData] = useState([]);
@@ -135,37 +134,9 @@ function CoinCollection(props) {
         
         <div>
           <div className="flex flex-col text-white font-bold  bg-red-400">
-            <h1 className="text-4xl text-center">CoinFlip Results</h1>
-
-            <h2 className="text-2xl">Recent CoinFlips</h2>
-
-            <table className="table-auto text-left border">
-                <tbody>
-                  <tr className="border">
-                    <th className="border">Date</th>
-                    <th className="border">Player</th>
-                    <th className="border">TokenID</th>
-                    <th className="border">Prediction</th>
-                    <th className="border">Outcome</th>
-                    <th className="border">Result</th>              
-                  </tr>
-
-                  {eventsData.map((item, id) => (
-                    <tr key={id} className="border">
-                      <td className="border">{item.eventDate.slice(0, 19)}</td>
-                      <td className="border">{item.blockEventData.player}</td>
-                      <td className="border">{item.blockEventData.id}</td>
-                      <td className="border">{item.blockEventData.kind == 0 ? 'Heads' : 'Tails'}</td>
-                      <td className="border">{item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails'}</td>
-                      <td className="border"><a href={`https://testnet.flowscan.org/transaction/${item.flowTransactionId}`} target="_blank">{item.blockEventData.coinresult == 0 ? <button className="px-4 py-2 text-white rounded-full md:py-1 bg-lime-500 hover:bg-brightRedLight font-bold">Winner</button> : <button className="px-4 py-2 text-white rounded-full md:py-1 bg-red-700 hover:bg-brightRedLight font-bold">Loser</button>}</a></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-
 
               <h2 className="text-2xl">Your Live CoinFlips</h2>
-              <h2 className="flex flex-col text-white font-bold  bg-red-400">Step 1: Sending Coin to be Flipped Transaction Details</h2>
+              <h2 className="flex flex-col text-white font-bold  bg-red-400">Status</h2>
                 <div className="flex flex-col text-white font-bold bg-red-400"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></div>
 
               <table className="text-left table-fixed border-collapse">
@@ -182,21 +153,19 @@ function CoinCollection(props) {
 
                   {chat.map((item, id) => (
                     <tr key={id} className="border">
-                      <td className="border hover:bg-white text-sky-800"><a href={`https://testnet.flowscan.org/transaction/${item.flowTransactionId}`} target="_blank">{item.eventDate.slice(0, 19)}</a></td>
-                      <td className="border">{item.blockEventData.player == null ? 'Coin sent.' : 'Coin Flipped!'}</td>
-                      <td className="border">{item.blockEventData.player == null ? 'Pending' : item.blockEventData.player}</td>
+                      <td className="border">{item.eventDate.slice(0, 19)}</td>
+                      <td className="border">{item.blockEventData.player == null ? 'Coin received. CoinFlip is in-progress.' : 'Coin Flipped!'}</td>
+                      <td className="border">{item.blockEventData.player == null ? '' : item.blockEventData.player}</td>
                       <td className="border">{item.blockEventData.id}</td>
-                      <td className="border">{item.blockEventData.kind == null ? 'Pending' : (item.blockEventData.kind == 0 ? 'Heads' : 'Tails')}</td>
-                      <td className="border">{item.blockEventData.coinFlip == null ? 'Pending' : (item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails')}</td>
-                      <td className="border">{item.blockEventData.coinresult == null ? 'Pending' : (item.blockEventData.coinresult == 0 ? <div className="text-green-400">Won 2 $FLOW</div> : 'Loser')}</td>                       
+                      <td className="border">{item.blockEventData.kind == null ? '' : (item.blockEventData.kind == 0 ? 'Heads' : 'Tails')}</td>
+                      <td className="border">{item.blockEventData.coinFlip == null ? '' : (item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails')}</td>
+                      <td className="border"><a href={`https://testnet.flowscan.org/transaction/${item.flowTransactionId}`} target="_blank">{item.blockEventData.coinresult == null ? '' : (item.blockEventData.coinresult == 0 ? <button className="px-4 py-2 text-white rounded-full md:py-1 bg-lime-500 hover:bg-brightRedLight font-bold">Winner</button> : <button className="px-4 py-2 text-white rounded-full md:py-1 bg-red-700 hover:bg-brightRedLight font-bold">Loser</button>)}</a></td>                       
                     </tr>
                   ))}
                 </tbody>
               </table>
               
           </div>
-          
-          
           
 
           <div className="flex flex-col text-center font-bold  bg-blue-400">
@@ -211,7 +180,7 @@ function CoinCollection(props) {
 
                   {nfts.map(nft => (
                     <tr key={nft.id} className="border">
-                      <div className="relative"><img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} onClick={() => play(nft.id)}/><button className="absolute top-0 px-4 py-2 text-white rounded-full md:py-1 bg-purple-600 hover:bg-brightRedLight font-bold">Click to Flip</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nft.id}<br></br>Type: {nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>                
+                      <div className="relative"><img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} onClick={() => play(nft.id)}/><button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Click Coin to Flip</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nft.id}<br></br>Type: {nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>                
                       
                  
               

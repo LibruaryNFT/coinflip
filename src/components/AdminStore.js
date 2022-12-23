@@ -64,8 +64,8 @@ function AdminStore() {
   
     return (  
 
-        <div>
-          <div className="flex flex-col text-center font-bold  bg-blue-400">
+        <div className="bg-blue-400">
+          <div className="flex flex-col text-center font-bold">
             <h1 className="text-white text-4xl">Admin Storefront Only - List and Unlist your Coins</h1>
             <label>ID: </label>
             <input type="text" onChange={(e) => setID(e.target.value)} />
