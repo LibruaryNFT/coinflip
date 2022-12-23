@@ -82,7 +82,7 @@ function SaleCollection(props) {
 
             {Object.keys(nfts).map(nftID => (
               <tr key={nfts[nftID].nftRef.id} className="border">
-                <div className="relative text-black"><img className="border cursor-pointer rounded-full max-w-xs" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`} onClick={() => purchase(nftID)}/><button className="absolute top-0 px-4 py-2 text-white rounded-full md:py-1 bg-purple-600 hover:bg-brightRedLight font-bold">Click to Purchase for {Math.round(nfts[nftID].price)} $FLOW</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nfts[nftID].nftRef.id}<br></br>Type: {nfts[nftID].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>      
+                <div className="relative"><img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`} onClick={() => purchase(nftID)}/><button className="absolute top-0 px-4 py-2 text-white rounded-full md:py-1 bg-purple-600 hover:bg-brightRedLight font-bold">Click to Purchase for {Math.round(nfts[nftID].price)} $FLOW</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nfts[nftID].nftRef.id}<br></br>Type: {nfts[nftID].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>      
                  
               </tr>
             ))}
