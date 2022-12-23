@@ -211,7 +211,7 @@ function CoinCollection(props) {
 
                   {nfts.map(nft => (
                     <tr key={nft.id} className="border">
-                      <div className="relative text-black"><img className="border cursor-pointer" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} onClick={() => play(nft.id)}/><button className="absolute top-0 px-4 py-2 text-white rounded-full md:py-1 bg-purple-600 hover:bg-brightRedLight font-bold">Click to Flip</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nft.id}</button></div>                
+                      <div className="relative text-black"><img className="border cursor-pointer rounded-full max-w-xs" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} onClick={() => play(nft.id)}/><button className="absolute top-0 px-4 py-2 text-white rounded-full md:py-1 bg-purple-600 hover:bg-brightRedLight font-bold">Click to Flip</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nft.id}<br></br>Type: {nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>                
                       
                  
               

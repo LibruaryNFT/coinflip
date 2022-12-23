@@ -112,6 +112,11 @@ flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 0 
 
 flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 1 0 bafybeifraraokwjwpyvfypprleumli2n32xfijbcexjneb6rj6yyzifnzi --signer=testnet-account --network=testnet
 
+Pieland
+flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 0 0 bafybeicw7iywcykxa2siw7aofs6kxiwmnyod5poi4smktbn42jnqe4cniu --signer=testnet-account --network=testnet
+
+flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 1 0 bafybeib5rjnjeu4xy7r5lwoyyoyg3c6ko4mwxiripegwvrx37aciq65lb4 --signer=testnet-account --network=testnet
+
 16. As the storefront, list all the NFTs
 
 # Storage Reference
@@ -290,3 +295,15 @@ getBalance.cdc
 
     flow scripts execute ./cadence/utilities/get_balance.cdc f8d6e0586b0a20c7
     flow scripts execute ./cadence/utilities/get_balance.cdc 01cf0e2f2f715450
+
+# IPFS
+
+https://docs.ipfs.tech/how-to/command-line-quick-start/#take-your-node-online
+
+Install and run 'ipfs init'
+ipfs daemon
+Goto localhost:5001/webui
+Add the files
+
+Goto https://natoboram.gitlab.io/public-gateway-cacher/
+Paste the CID into IPFS and click Cache and then wait
