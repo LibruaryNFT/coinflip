@@ -307,3 +307,12 @@ Add the files
 
 Goto https://natoboram.gitlab.io/public-gateway-cacher/
 Paste the CID into IPFS and click Cache and then wait
+
+# Brand New Install
+
+Download visual code studio
+Sync settings
+Download git
+Install node
+https://nodejs.org/en/download/
+install react: npm install react-scripts npm start
