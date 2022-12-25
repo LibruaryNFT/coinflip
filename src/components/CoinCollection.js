@@ -153,7 +153,7 @@ function CoinCollection(props) {
 
                   {chat.map((item, id) => (
                     <tr key={id} className="border">
-                      <td className="border">{item.eventDate.slice(0, 19)}</td>
+                      <td className="border">{item.eventDate.slice(5, 19).replace('T',' ')}</td>
                       <td className="border">{item.blockEventData.player == null ? 'Coin received. CoinFlip is in-progress.' : 'Coin Flipped!'}</td>
                       <td className="border">{item.blockEventData.player == null ? '' : item.blockEventData.player.slice(2,7)}</td>
                       <td className="border">{item.blockEventData.id}</td>
