@@ -146,7 +146,6 @@ function App() {
       <SaleCollection address="0xf788ae5c7ec2d1ae"/>
       
       <Footer/>
-      <AdminStore/>
    
     </div>
     
