@@ -37,15 +37,15 @@ function PreviousCoinFlips(props) {
   return (
         
         <div>
-          <div className="flex flex-col text-white font-bold  bg-red-400">
+          <div className="flex flex-col text-white font-bold bg-red-400">
             <h1 className="text-4xl text-center">Previous CoinFlip Results</h1>
 
-            <table className="table-auto text-left border">
+            <table className="table-auto text-left border text-sm">
                 <tbody>
                   <tr className="border">
                     <th className="border">Date</th>
                     <th className="border">Player</th>
-                    <th className="border">TokenID</th>
+                    <th className="border">ID</th>
                     <th className="border">Prediction</th>
                     <th className="border">Outcome</th>
                     <th className="border">Result</th>              
