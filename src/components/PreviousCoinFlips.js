@@ -54,7 +54,7 @@ function PreviousCoinFlips(props) {
                   {eventsData.map((item, id) => (
                     <tr key={id} className="border">
                       <td className="border">{item.eventDate.slice(0, 19)}</td>
-                      <td className="border">{item.blockEventData.player}</td>
+                      <td className="border">{item.blockEventData.player.slice(2,7)}</td>
                       <td className="border">{item.blockEventData.id}</td>
                       <td className="border">{item.blockEventData.kind == 0 ? 'Heads' : 'Tails'}</td>
                       <td className="border">{item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails'}</td>

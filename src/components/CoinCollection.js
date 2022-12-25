@@ -139,7 +139,7 @@ function CoinCollection(props) {
               <h2 className="flex flex-col text-white font-bold  bg-red-400">Status</h2>
                 <div className="flex flex-col text-white font-bold bg-red-400"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></div>
 
-              <table className="text-left table-fixed border-collapse">
+              <table className="text-left table-fixed border-collapse text-sm">
                 <tbody>
                   <tr className="border">
                     <th className="border">Date</th>
@@ -155,7 +155,7 @@ function CoinCollection(props) {
                     <tr key={id} className="border">
                       <td className="border">{item.eventDate.slice(0, 19)}</td>
                       <td className="border">{item.blockEventData.player == null ? 'Coin received. CoinFlip is in-progress.' : 'Coin Flipped!'}</td>
-                      <td className="border">{item.blockEventData.player == null ? '' : item.blockEventData.player}</td>
+                      <td className="border">{item.blockEventData.player == null ? '' : item.blockEventData.player.slice(2,7)}</td>
                       <td className="border">{item.blockEventData.id}</td>
                       <td className="border">{item.blockEventData.kind == null ? '' : (item.blockEventData.kind == 0 ? 'Heads' : 'Tails')}</td>
                       <td className="border">{item.blockEventData.coinFlip == null ? '' : (item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails')}</td>
