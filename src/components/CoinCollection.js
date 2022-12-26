@@ -143,9 +143,8 @@ function CoinCollection(props) {
                 <tbody>
                   <tr className="border">
                     <th className="border">Date</th>
-                    <th className="border">Status</th>
                     <th className="border">Player</th>
-                    <th className="border">TokenID</th>
+                    <th className="border">ID</th>
                     <th className="border">Prediction</th>
                     <th className="border">Outcome</th>
                     <th className="border">Result</th>              
@@ -154,11 +153,10 @@ function CoinCollection(props) {
                   {chat.map((item, id) => (
                     <tr key={id} className="border">
                       <td className="border">{item.eventDate.slice(5, 19).replace('T',' ')}</td>
-                      <td className="border">{item.blockEventData.player == null ? 'Coin received. CoinFlip is in-progress.' : 'Coin Flipped!'}</td>
                       <td className="border">{item.blockEventData.player == null ? '' : item.blockEventData.player.slice(2,7)}</td>
                       <td className="border">{item.blockEventData.id}</td>
                       <td className="border">{item.blockEventData.kind == null ? '' : (item.blockEventData.kind == 0 ? 'Heads' : 'Tails')}</td>
-                      <td className="border">{item.blockEventData.coinFlip == null ? '' : (item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails')}</td>
+                      <td className="border">{item.blockEventData.coinFlip == null ? 'Coin received. CoinFlip is in-progress.' : (item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails')}</td>
                       <td className="border"><a href={`https://testnet.flowscan.org/transaction/${item.flowTransactionId}`} target="_blank">{item.blockEventData.coinresult == null ? '' : (item.blockEventData.coinresult == 0 ? <button className="px-4 py-2 text-white rounded-full md:py-1 bg-lime-500 hover:bg-brightRedLight font-bold">Winner</button> : <button className="px-4 py-2 text-white rounded-full md:py-1 bg-red-700 hover:bg-brightRedLight font-bold">Loser</button>)}</a></td>                       
                     </tr>
                   ))}
@@ -180,7 +178,11 @@ function CoinCollection(props) {
 
                   {nfts.map(nft => (
                     <tr key={nft.id} className="border">
-                      <div className="relative"><img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} onClick={() => play(nft.id)}/><button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Click Coin to Flip</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nft.id}<br></br>Type: {nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>                
+                      <div className="relative">
+                        <div className="">
+                          <img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} onClick={() => play(nft.id)}/>
+                        </div>
+                        <button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Click Coin to Flip</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nft.id}<br></br>Type: {nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>                
                       
                  
               
