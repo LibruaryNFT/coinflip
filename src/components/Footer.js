@@ -22,7 +22,7 @@ const Footer = () => {
 
             <div className="flex justify-around space-x-32">
                 <div className="flex flex-col space-y-2 text-white">
-                    <a href="https://gamingstudiowebsite.herokuapp.com/" className="hover:text-fuchsia-600">Token Games</a>
+                    <a href="https://gamingstudiowebsite.herokuapp.com/" className="hover:text-fuchsia-600">Waterfall Games</a>
                     <a href="index.js" className="hover:text-fuchsia-600">CoinFlip</a>
                 </div>
                 <div className="flex flex-col space-y-2 text-white">

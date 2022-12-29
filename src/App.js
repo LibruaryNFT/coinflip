@@ -2,6 +2,7 @@ import "./dist/output.css"
 
 import CoinCollection from "./components/CoinCollection.js";
 import SaleCollection from "./components/SaleCollection.js";
+import CoinStore from "./components/CoinStore.js";
 import AdminStore from "./components/AdminStore.js"
 import SetupAccount from "./components/SetupAccount.js"
 import PreviousCoinFlips from "./components/PreviousCoinFlips.js"
@@ -142,8 +143,8 @@ function App() {
         :
         null
       }
-                    
-      <SaleCollection address="0xf788ae5c7ec2d1ae"/>
+      <CoinStore address="0xf788ae5c7ec2d1ae"/>              
+     
       
       <Footer/>
    

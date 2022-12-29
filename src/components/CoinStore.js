@@ -7,9 +7,10 @@ import {useState, useEffect} from 'react';
 import {getNFTListings} from "../cadence/scripts/get_nft_listings.js";
 import {purchaseTx} from "../cadence/transactions/purchase.js";
 
-function SaleCollection(props) {
+function CoinStore(props) {
   const [nfts, setNFTs] = useState([]);
   const [coins, setCoins] = useState([]);
+  const [randomCoins, setRandomCoins] = useState([]);
 
   useEffect(() => {
 
@@ -20,7 +21,7 @@ function SaleCollection(props) {
   useEffect(() => {
     setTimeout(() => {
       randomCoin();
-    }, 2000);
+    }, 500);
   }, [nfts]);
 
   const getUserSaleNFTs = async () => {
@@ -88,7 +89,7 @@ function SaleCollection(props) {
       coins[1][rnd_1]
     ];
     console.log(['randomCoin', nfts_rnd]);
-    
+    setRandomCoins(nfts_rnd);
   }
     
   
@@ -96,15 +97,15 @@ function SaleCollection(props) {
   return (
     <div>
       <div className="flex flex-col text-center font-bold  bg-green-400">
-          <h1 className="text-white text-4xl pb-4">Debugging View: Sales Collection</h1>
+          <h1 className="text-white text-4xl pb-4">Coin Store</h1>
       </div>
       <div className="flex flex-col text-center font-bold bg-green-400">
         <table className="text-left table-fixed border-collapse text-white">
           <tbody>      
 
-            {Object.keys(nfts).map(nftID => (
-              <tr key={nfts[nftID].nftRef.id} className="border">
-                <td className="relative"><img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${nfts[nftID].nftRef.ipfsHash}.ipfs.dweb.link/`} onClick={() => purchase(nftID)}/><button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Click Coin to Purchase</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nfts[nftID].nftRef.id}<br></br>Type: {nfts[nftID].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}<br></br>Price: {Math.round(nfts[nftID].price)} $FLOW</button></td>      
+            {Object.keys(randomCoins).map(id => (
+              <tr key={randomCoins[id].nftRef.id} className="border">
+                <td className="relative"><img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${randomCoins[id].nftRef.ipfsHash}.ipfs.dweb.link/`} onClick={() => purchase(randomCoins[id].nftRef.id)}/><button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Click Coin to Purchase</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {randomCoins[id].nftRef.id}<br></br>Type: {randomCoins[id].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}<br></br>Price: {Math.round(randomCoins[id].price)} $FLOW</button></td>      
                  
               </tr>
             ))}
@@ -115,4 +116,4 @@ function SaleCollection(props) {
   );
 }
 
-export default SaleCollection;
+export default CoinStore;
