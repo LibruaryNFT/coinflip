@@ -104,14 +104,17 @@ function App() {
       
       <div className="flex flex-col font-bold text-white bg-purple-400">
                     
-        <h1 className="text-white text-4xl text-center">What is CoinFlip?</h1>
-        It is a game which allows Players to predict the Outcome of a CoinFlip and win $FLOW if they were correct. The Player can buy a Coin from the Marketplace which represents their Prediction on the Outcome of a CoinFlip. <br></br>
-        When the CoinFlip happens, correct Predictions are paid their prizes and then the Coin is destroyed. <br></br>
+        <h1 className="text-white text-4xl text-center">Feeling Lucky?</h1>
+        Throw in a coin and say how you think the coin will land at the bottom of the water! <br></br>
+If you are correct, riches await you! Remember that any coins thrown in can never again be retrieved!<br></br>
+If you'd like more coins, I sell only the luckiest coins below at the Lucky Coin Store.
+ <br></br>
+
         
       </div>
       
       <div className="flex flex-col font-bold text-white bg-purple-400">
-        <h1 className="text-white text-4xl text-center">Instructions</h1>
+        <h1 className="text-white text-4xl text-center">Game Instructions</h1>
       
 
         { user.loggedIn == true && coincollectioncheck == false
