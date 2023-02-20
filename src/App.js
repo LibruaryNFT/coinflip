@@ -70,7 +70,7 @@ function App() {
     <div className="flex flex-col mx-auto space-y-6 md:space-y-6 md:flex-row bg-zinc-800">
         <div className="flex flex-col space-y-14 md:w-1/2">
             <h2 className="max-w-md text-4xl font-bold text-center md:text-left md:ml-14 text-white">
-                CoinFlip                  
+                Waterfall of Luck                  
             </h2>
         </div>
         <div className=" flex flex-col space-y-14 md:w-1/2">
@@ -155,3 +155,4 @@ function App() {
 }
 
 export default App;
+ 

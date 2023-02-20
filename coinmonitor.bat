@@ -4,7 +4,7 @@
 
 set coinlog="C:/coinlogs/coinlog.txt"
 
-set coinpath="C:/Code/Coinflip/coinflip"
+set coinpath="C:/Code/coinflip"
 CD %coinpath%
 
 echo starting coinmonitor.bat at %date% %time% >> %coinlog%
