@@ -104,7 +104,7 @@ function App() {
       <div className="flex flex-col font-bold text-white bg-purple-400">
         <h1 className="text-white text-4xl text-center">A friendly visitor?!</h1>
       
-        Welcome traveller! <br></br>Yes, the tales are true, I am the Water of Luck.. <br></br>and luckily for you I can speak English!
+        Welcome traveler! <br></br>Yes, the tales are true, I am the Water of Luck.. <br></br>and luckily for you I can speak English!
         <br></br>I want to have some fun with you, but first I'd like to get to know who you are. Please identify yourself!
         { user.loggedIn == true && coincollectioncheck == false
         ?
