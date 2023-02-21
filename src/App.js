@@ -18,7 +18,7 @@ fcl.config()
   .put("accessNode.api", "https://rest-testnet.onflow.org")
   .put("discovery.wallet", "https://fcl-discovery.onflow.org/testnet/authn")
 
-document.title = 'CoinFlip';
+document.title = 'Waterfall of Luck';
 
 function App() {
 
