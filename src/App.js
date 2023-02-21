@@ -107,14 +107,17 @@ function App() {
         <h1 className="text-white text-4xl text-center">Feeling Lucky?</h1>
         Throw in a coin and say how you think the coin will land at the bottom of the water! <br></br>
 If you are correct, riches await you! Remember that any coins thrown in can never again be retrieved!<br></br>
-If you'd like more coins, I sell only the luckiest coins below at the Lucky Coin Store.
+If you'd like more coins, I sell only the luckiest coins below at the Lucky Coin Store.<br></br>
+Did I forget to mention that not just anyone can throw coins in, you must first identify your Character!
+After that, if it is your first time playing ever on that character, you need to click a Magical Setup Character button!<br></br>
+I am also feeling very generous today and will grant your account 1000 free FLOW Tokens if you goto <a className="text-sky-800" href='https://testnet-faucet-v2.onflow.org/fund-account' target="_blank">TestNet Faucet</a> and enter your Character Name.
  <br></br>
 
         
       </div>
       
       <div className="flex flex-col font-bold text-white bg-purple-400">
-        <h1 className="text-white text-4xl text-center">Game Instructions</h1>
+        <h1 className="text-white text-4xl text-center">Worthy Character Requirements</h1>
       
 
         { user.loggedIn == true && coincollectioncheck == false
@@ -126,17 +129,11 @@ If you'd like more coins, I sell only the luckiest coins below at the Lucky Coin
 
         { user.loggedIn == null
         ?
-        <div className="font-bold">Connect Character to view your Coin Collection.</div>
+        <div className="font-bold">You must Connect your Character!</div>
         :
         null
         }
-        
-        <div>Special Note for Testing: If will likely need funds, just copy your Character Name top right and then use <a className="text-sky-800" href='https://testnet-faucet-v2.onflow.org/fund-account' target="_blank">TestNet Faucet</a> to fund your account.</div>
-        <div className="font-bold">1. Purchase a Coin from the Luck Coin Store.<br></br>
-        2. Click the Coin in your Collection<br></br>
-        3. Wait and see if you predicted correctly to win $FLOW!</div>  
-        
-      </div>
+      
       
       <PreviousCoinFlips/>
                     
