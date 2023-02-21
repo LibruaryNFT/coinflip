@@ -97,7 +97,7 @@ function CoinStore(props) {
   return (
     <div>
       <div className="flex flex-col text-center font-bold  bg-green-400">
-          <h1 className="text-white text-4xl pb-4">Coin Store</h1>
+          <h1 className="text-white text-4xl pb-4">Shop of Curiosity</h1>
       </div>
       <div className="flex flex-col text-center font-bold bg-green-400">
         <table className="text-left table-fixed border-collapse text-white">

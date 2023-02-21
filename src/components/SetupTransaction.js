@@ -14,7 +14,7 @@ function SetupTransaction ({txId, txInProgress, txStatus, txStatusCode}) {
                         <span>
                             Transaction Status: Initializing
                             <br/>
-                            <small>Waiting for transaction approval to setup account.</small>
+                            <small>Waiting for Waterfall of Luck's to hand over the contract to be signed.</small>
                         </span>
                         <br/>           
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -35,7 +35,7 @@ function SetupTransaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             </span>
                         Pending
                         <br/>
-                        <small>The transaction is currently pending.</small>
+                        <small>You are now reading over the contract carefully.</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -56,7 +56,7 @@ function SetupTransaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             </span>
                         Finalized
                         <br/>
-                        <small>The transaction is currently executing.</small>
+                        <small>You are still reading over the contract carefully.</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -76,7 +76,7 @@ function SetupTransaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             </span>
                             Executed
                             <br />
-                            <small>The transaction is currently sealing.</small>
+                            <small>You have read the contract and have signed your name, agreeing to not jump into the water to steal my treasures.</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -96,7 +96,7 @@ function SetupTransaction ({txId, txInProgress, txStatus, txStatusCode}) {
                         </span>
                             Sealed
                             <br />
-                            <small>Transaction Complete. At this point the transaction result has been committed to the blockchain. Please refresh the page and play CoinFlip!</small>
+                            <small>Thank you for signing the contract, I won't ask you to do that again. Please refresh this page and then we can start the fun!</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">

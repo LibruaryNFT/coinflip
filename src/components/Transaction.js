@@ -15,6 +15,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             Transaction Status: Initializing
                             <br/>
                             <small>Waiting for transaction approval to send coin to be flipped.</small>
+                    
                         </span>
                         <br/>           
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -119,7 +120,9 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
      ) 
      
       } else {
-        return <></>
+        return (
+            <div>Normal waterfall. There is no transaction right now.</div>
+        )
       }
     }
 

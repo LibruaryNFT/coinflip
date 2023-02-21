@@ -38,13 +38,13 @@ function PreviousCoinFlips(props) {
         
         <div>
           <div className="flex flex-col text-white font-bold bg-red-400">
-            <h1 className="text-4xl text-center">Previous CoinFlip Results</h1>
+            <h1 className="text-4xl text-center">Previous Results</h1>
 
             <table className="table-auto text-left border text-sm">
                 <tbody>
                   <tr className="border">
                     <th className="border">Date</th>
-                    <th className="border">Player</th>
+                    <th className="border">Name</th>
                     <th className="border">ID</th>
                     <th className="border">Prediction</th>
                     <th className="border">Outcome</th>

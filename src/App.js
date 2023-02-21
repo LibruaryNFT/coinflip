@@ -3,6 +3,7 @@ import "./dist/output.css"
 import CoinCollection from "./components/CoinCollection.js";
 import SaleCollection from "./components/SaleCollection.js";
 import CoinStore from "./components/CoinStore.js";
+import Waterfall from "./components/Waterfall.js";
 import AdminStore from "./components/AdminStore.js"
 import SetupAccount from "./components/SetupAccount.js"
 import PreviousCoinFlips from "./components/PreviousCoinFlips.js"
@@ -82,7 +83,7 @@ function App() {
                     { user.loggedIn == true
                         ?
                         <div className="px-4 py-2 text-white rounded-full md:py-1 bg-purple-600 hover:bg-brightRedLight font-bold">
-                            <button onClick={() => fcl.unauthenticate()}>Disconnect Wallet</button>  
+                            <button onClick={() => fcl.unauthenticate()}>Disconnect Character</button>  
                         </div>
                         :
                         <div className="px-4 py-2 text-white rounded-full md:py-1 bg-purple-600 hover:bg-brightRedLight font-bold">
@@ -101,49 +102,12 @@ function App() {
         </div>
       </div>        
       
-      <div className="flex flex-col font-bold text-center text-white bg-purple-400">
-        <h1 className="text-white text-4xl text-center">A friendly visitor?!</h1>
-      
-        Welcome traveler! <br></br>Yes, the tales are true, I am the Water of Luck.. <br></br>and luckily for you I can speak English!
-        <br></br>I want to have some fun with you, but first I'd like to get to know who you are. Please identify yourself!
-        { user.loggedIn == true && coincollectioncheck == false
-        ?
-        <SetupAccount/>
-        :
-        null
-        }
+      <div className="flex flex-col font-bold text-center text-white bg-purple-400">        
+       
+       <Waterfall user={user} coincollectioncheck={coincollectioncheck}/>
 
-        { user.loggedIn == null
-        ?
-        <div className="font-bold">Look for a way to identify yourself! Legends say there might be a big button that says 'Connect Character'. Also, I know I am friendly to those from the land of BloctoWallet, but unsure about others.. </div>
-        :
-        null
-        }
-      
       </div>
       
-      { user.loggedIn == true && coincollectioncheck == true
-        ?
-        <PreviousCoinFlips/>
-        :
-        null
-      }
-                    
-      { user.loggedIn == true && coincollectioncheck == true
-        ?
-        <CoinCollection address={user.addr}></CoinCollection>
-        :
-        null
-      }
-
-      { user.loggedIn == true && coincollectioncheck == true
-        ?
-        <CoinStore address="0xf788ae5c7ec2d1ae"/>  
-        :
-        null
-      }
-                  
-     
       <Footer/>
    
     </div>

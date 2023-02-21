@@ -14,6 +14,7 @@ import {playGame} from "../cadence/transactions/play_game.js";
 import axios from "axios";
 
 import Transaction from "./Transaction.js";
+import Waterfall from "./Waterfall.js";
 
 function CoinCollection(props) {
   const[nfts, setNFTs] = useState([]);
@@ -135,15 +136,16 @@ function CoinCollection(props) {
         <div>
           <div className="flex flex-col text-white font-bold  bg-red-400">
 
-              <h2 className="text-2xl">Your Live CoinFlips</h2>
+              <h2 className="text-2xl">Your Live Results</h2>
               <h2 className="flex flex-col text-white font-bold  bg-red-400">Status</h2>
                 <div className="flex flex-col text-white font-bold bg-red-400"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></div>
-
+                <h2 className="flex flex-col text-white font-bold  bg-red-400">Status</h2>
+                <div className="flex flex-col text-white font-bold bg-red-400"><Waterfall txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></div>
               <table className="text-left table-fixed border-collapse text-sm">
                 <tbody>
                   <tr className="border">
                     <th className="border">Date</th>
-                    <th className="border">Player</th>
+                    <th className="border">Name</th>
                     <th className="border">ID</th>
                     <th className="border">Prediction</th>
                     <th className="border">Outcome</th>
