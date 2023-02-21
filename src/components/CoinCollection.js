@@ -167,7 +167,7 @@ function CoinCollection(props) {
           
 
           <div className="flex flex-col text-center font-bold  bg-blue-400">
-            <h1 className="text-white text-4xl pb-4">Your Coin Collection</h1>
+            <h1 className="text-white text-4xl pb-4">Your Inventory</h1>
           </div>
           <div className="flex flex-col text-center font-bold  bg-blue-400">
 

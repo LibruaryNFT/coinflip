@@ -100,26 +100,12 @@ function App() {
             </div>
         </div>
       </div>        
-                  
       
       <div className="flex flex-col font-bold text-white bg-purple-400">
-                    
-        <h1 className="text-white text-4xl text-center">Feeling Lucky?</h1>
-        Throw in a coin and say how you think the coin will land at the bottom of the water! <br></br>
-If you are correct, riches await you! Remember that any coins thrown in can never again be retrieved!<br></br>
-If you'd like more coins, I sell only the luckiest coins below at the Lucky Coin Store.<br></br>
-Did I forget to mention that not just anyone can throw coins in, you must first identify your Character!
-After that, if it is your first time playing ever on that character, you need to click a Magical Setup Character button!<br></br>
-I am also feeling very generous today and will grant your account 1000 free FLOW Tokens if you goto <a className="text-sky-800" href='https://testnet-faucet-v2.onflow.org/fund-account' target="_blank">TestNet Faucet</a> and enter your Character Name.
- <br></br>
-
-        
-      </div>
+        <h1 className="text-white text-4xl text-center">A friendly visitor?!</h1>
       
-      <div className="flex flex-col font-bold text-white bg-purple-400">
-        <h1 className="text-white text-4xl text-center">Worthy Character Requirements</h1>
-      
-
+        Welcome traveller! Yes, the tales are true, I am the Water of Luck.. and luckily for you I can speak English!
+        I want to have some fun with you, but first I'd like to get to know who you are. Please identify yourself!
         { user.loggedIn == true && coincollectioncheck == false
         ?
         <SetupAccount/>
@@ -129,14 +115,19 @@ I am also feeling very generous today and will grant your account 1000 free FLOW
 
         { user.loggedIn == null
         ?
-        <div className="font-bold">You must Connect your Character!</div>
+        <div className="font-bold">Look for a way to Connect Character! I have met many travellers from the land of BloctWallet, so that would be great if you were from there! </div>
         :
         null
         }
       
       </div>
       
-      <PreviousCoinFlips/>
+      { user.loggedIn == true && coincollectioncheck == true
+        ?
+        <PreviousCoinFlips/>
+        :
+        null
+      }
                     
       { user.loggedIn == true && coincollectioncheck == true
         ?
@@ -144,9 +135,15 @@ I am also feeling very generous today and will grant your account 1000 free FLOW
         :
         null
       }
-      <CoinStore address="0xf788ae5c7ec2d1ae"/>              
+
+      { user.loggedIn == true && coincollectioncheck == true
+        ?
+        <CoinStore address="0xf788ae5c7ec2d1ae"/>  
+        :
+        null
+      }
+                  
      
-      
       <Footer/>
    
     </div>
