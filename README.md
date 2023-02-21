@@ -15,31 +15,6 @@ nodejs
 npm install react-scripts
 npm start
 
-# File Structure
-
-/cadence
-    /contracts
-    /scripts
-    /transactions
-    /utilities
-/dist
-/public
-/src
-    /cadence
-        /scripts
-        /transactions
-/components
-/dist
-/img
-/js
-Admin.js
-App.css
-index.css
-index.html
-index.js
-coinmonitor.bat
-tailwind.config.js
-
 # Emulator Quick Start Guide
 Use this to get started on the emulator and test the major functionality
 
