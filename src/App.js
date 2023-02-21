@@ -134,6 +134,7 @@ I am also feeling very generous today and will grant your account 1000 free FLOW
         null
         }
       
+      </div>
       
       <PreviousCoinFlips/>
                     
