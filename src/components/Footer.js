@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="container flex flex-col-reverse justify-between px-6 py-2 mx-auto space-y-2 md:flex-row md:space-y-0">
             <div className="flex flex-col-reverse items-center justify-between space-y-2 md:flex-col md:space-y-0 md:items-start">
                 <div className="mx-auto my-6 text-center text-white md:hidden">
-                    Copyright &copy; 2023, All Rights Reserved
+                    Created by Libruary. Copyright &copy; 2023, All Rights Reserved
                 </div>
                 <div>
                     
@@ -23,7 +23,7 @@ const Footer = () => {
             <div className="flex justify-around space-x-32">
                 <div className="flex flex-col space-y-2 text-white">
             
-                    <a href="index.js" className="hover:text-fuchsia-600">Waterfall of Luck</a>
+                    
                 </div>
                 <div className="flex flex-col space-y-2 text-white">
                     <img src="https://nbatopshot.com/static/img/flow.svg" alt=""/>
