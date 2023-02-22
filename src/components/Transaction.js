@@ -120,9 +120,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
      ) 
      
       } else {
-        return (
-            <div>There is no transaction right now cause you haven't thrown a coin in yet!</div>
-        )
+        
       }
     }
 
