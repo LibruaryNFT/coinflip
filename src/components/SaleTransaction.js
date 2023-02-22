@@ -1,7 +1,7 @@
 import '../App.css';
 import '../dist/output.css';
 
-function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
+function SaleTransaction ({txId, txInProgress, txStatus, txStatusCode}) {
 
   if (txInProgress) {
         return (
@@ -14,7 +14,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                         <span>
                             Transaction Status: Initializing
                             <br/>
-                            <small>Waiting for transaction approval to send coin to be flipped.</small>
+                            <small>Waiting for transaction approval.</small>
                     
                         </span>
                         <br/>           
@@ -36,7 +36,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             </span>
                         Pending
                         <br/>
-                        <small>The transaction to send the coin to be flipped is currently pending.</small>
+                        <small>The purchase transaction is currently pending.</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -57,7 +57,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             </span>
                         Finalized
                         <br/>
-                        <small>The transaction to send the coin to be flipped is currently executing.</small>
+                        <small>The transaction to purchase this coin is currently executing.</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -77,7 +77,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             </span>
                             Executed
                             <br />
-                            <small>The transaction to send the coin to be flipped is currently sealing.</small>
+                            <small>The purchase transaction is currently sealing.</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -97,7 +97,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                         </span>
                             Sealed
                             <br />
-                            <small>Transaction Complete. At this point the transaction result has been committed to the blockchain. The coin has been sent to the admin and is awaiting to be flipped in queue.</small>
+                            <small>Transaction Complete. At this point the transaction result has been committed to the blockchain. You now own this coin, please refresh the page.</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -120,12 +120,10 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
      ) 
      
       } else {
-        return (
-            <div>There is no transaction right now cause you haven't thrown a coin in yet!</div>
-        )
+        
       }
     }
 
 
 
-export default Transaction;
+export default SaleTransaction;

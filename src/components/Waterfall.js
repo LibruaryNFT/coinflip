@@ -7,86 +7,103 @@ import CoinStore from "./CoinStore.js"
 import PreviousCoinFlips from "./PreviousCoinFlips.js"
 
 
-function Waterfall ({user, coincollectioncheck, txId, txInProgress,txStatus}) {
-    if (user) {
-            
+function Waterfall ({user, coincollectioncheck, txId, txInProgress,txStatus, txStatusCode}) {
+
+    if (txInProgress) {
+        return (
+            <article>
+                {txStatus < 0 
+
+                ?
+
+                    <div>
+                        Transaction: Initializing
+                    </div>
+
+                : txStatus < 2
+
+                ?
+
+
+                    <div>
+                        Transaction: Pending
+                    </div> 
+
+                :
+
+                txStatus === 2     
+                 
+                ?
+                    <div>
+                        Transaction: Finalized
+                    </div> 
+
+                : txStatus === 3
+
+                ?
+
+                    <div>
+                        Transaction: Executed
+                    </div>
+
+                : txStatus === 4
+
+                ? 
+
+                    <div>
+                        Transaction: Sealed
+                    </div>
+
+                 : null}
+
+            </article>
+        )
+
+    } else if (txStatusCode === 1) {
+
+     return (
+      <article>PROBLEM!!!!!!!!!! View problem here: <span className="txId">
+      <a href={`https://testnet.flowscan.org/transaction/${txId}`} target="_blank">{txId?.slice(0,8)}...</a>
+    </span></article>
+
+     ) 
+     
+    } else if (user) {
+
         if (user.loggedIn == true && coincollectioncheck == true) {
 
             return (
+             
                 <div>
-                <h1 className="text-white text-4xl text-center">Welcome {user.addr}!</h1>
-                Do you feel lucky?
-
-                <CoinCollection address={user.addr} />
-                <CoinStore address="0xf788ae5c7ec2d1ae"/> 
-                <PreviousCoinFlips/> 
-
-            </div>
-
-            )
+                No current transaction. User logged in and collection is set-up.
+                </div>
+            ) 
+            
         }
 
-        else if (user.loggedIn == true && coincollectioncheck == false) {
+        if (user.loggedIn == true && coincollectioncheck == false) {
+
             return (
-            <SetupAccount/>
-
-            )
+             <div>No current transaction.  User logged in and collection is NOT set-up.</div>
+           
+            ) 
         }
-
-        else if (user.loggedIn != true) {
-            return (
-            <div>
-            <h1 className="text-white text-4xl text-center">Welcome traveler!</h1>
-            Yes, the tales are true, I am the Waterfall of Luck.. <br></br>
-            and luckily for you I can speak English!
-
-            <div className="font-bold"><br></br>I want to have some fun with you, but first I'd like to get to know who you are. <br></br>Please identify yourself! <br></br>Legends say there might be a big button that says 'Connect Character'. Also, I know I am friendly to those from the land of BloctoWallet, but unsure about others.. </div>
-        </div>
-        )
-        }
-    
+            
     }
 
-    else if (txInProgress && txStatus < 0 ) {
+    else if (user == null) {
         return (
-        <div>Waterfall: Transaction Status: Initializing</div>
+            <div>No current transaction.  User is NOT logged in.</div>
+           
         )
     }
-
-    else if (txInProgress && txStatus < 2 ) {
-        return (
-        <div>Waterfall: Transaction Status: Pending</div> 
-        )
-
-    }
-
-    else if (txInProgress && txStatus == 2 ) {
-        return (
-        <div>Waterfall: Transaction Status: Finalized</div> 
-        )
-
-    }
-
-    else if (txInProgress && txStatus == 3 ) {
-        return (
-        <div>Transaction Status: Executed</div> 
-        )
-
-    }
-
-    else if (txInProgress && txStatus == 4 ) {
-        return (
-        <div>Waterfall: Transaction Status: Sealed</div> 
-        )
-
-    }
+      
     else {
-        return(
-            <div>Waterfall: Nothing!</div>
+        return (
+            <div>You haven't thrown a coin in yet!</div>
         )
+      }
     }
-
-}
   
 export default Waterfall
 

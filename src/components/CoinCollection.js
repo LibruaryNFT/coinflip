@@ -3,7 +3,6 @@ import '../dist/output.css';
 
 import * as fcl from "@onflow/fcl";
 import * as t from "@onflow/types";
-import { HubConnectionBuilder } from '@microsoft/signalr';
 
 import {getNFTDetails} from "../cadence/scripts/get_nft_details.js";
 import {getUserTotal} from "../cadence/scripts/get_collection_length.js";
@@ -14,7 +13,6 @@ import {playGame} from "../cadence/transactions/play_game.js";
 import axios from "axios";
 
 import Transaction from "./Transaction.js";
-import Waterfall from "./Waterfall.js";
 
 function CoinCollection(props) {
   const[nfts, setNFTs] = useState([]);
@@ -134,13 +132,15 @@ function CoinCollection(props) {
   return (
         
         <div>
-          <div className="flex flex-col text-white font-bold  bg-red-400">
-
-              <h2 className="text-2xl">Your Live Results</h2>
-              <h2 className="flex flex-col text-white font-bold  bg-red-400">Status</h2>
-                <div className="flex flex-col text-white font-bold bg-red-400"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></div>
-                <h2 className="flex flex-col text-white font-bold  bg-red-400">Status</h2>
-                <div className="flex flex-col text-white font-bold bg-red-400"><Waterfall txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></div>
+          <div className="flex flex-col text-white font-bold text-center bg-blue-400">
+              <h1 className="flex flex-col text-4xl">Live Coin Result</h1>
+              <h2>The result of your coin throw will show up here. If you want to see all previous results, check out the Stone Wall of Results</h2>
+                
+                <div class="fixed left-0 right-0 bottom-0 w-full z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
+	                  <h2 class="text-center text-white text-xl font-semibold"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></h2>
+                </div>
+              
+              
               <table className="text-left table-fixed border-collapse text-sm">
                 <tbody>
                   <tr className="border">
@@ -158,7 +158,7 @@ function CoinCollection(props) {
                       <td className="border">{item.blockEventData.player == null ? '' : item.blockEventData.player.slice(2,7)}</td>
                       <td className="border">{item.blockEventData.id}</td>
                       <td className="border">{item.blockEventData.kind == null ? '' : (item.blockEventData.kind == 0 ? 'Heads' : 'Tails')}</td>
-                      <td className="border">{item.blockEventData.coinFlip == null ? 'Coin received. CoinFlip is in-progress.' : (item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails')}</td>
+                      <td className="border">{item.blockEventData.coinFlip == null ? 'Coin has landed in my waters! We are now waiting for it to float to the bottom!' : (item.blockEventData.coinFlip == 0 ? 'Heads' : 'Tails')}</td>
                       <td className="border"><a href={`https://testnet.flowscan.org/transaction/${item.flowTransactionId}`} target="_blank">{item.blockEventData.coinresult == null ? '' : (item.blockEventData.coinresult == 0 ? <button className="px-4 py-2 text-white rounded-full md:py-1 bg-lime-500 hover:bg-brightRedLight font-bold">Winner</button> : <button className="px-4 py-2 text-white rounded-full md:py-1 bg-red-700 hover:bg-brightRedLight font-bold">Loser</button>)}</a></td>                       
                     </tr>
                   ))}
@@ -168,10 +168,11 @@ function CoinCollection(props) {
           </div>
           
 
-          <div className="flex flex-col text-center font-bold  bg-blue-400">
-            <h1 className="text-white text-4xl pb-4">Your Inventory</h1>
+          <div className="flex flex-col text-center font-bold bg-yellow-900">
+            <h1 className="text-white text-4xl pb-4">Your Coin Satchel</h1>
+            <h2>This is where you can see all your coins that are ready to be thrown into my waters! Visit the Shop of Curiosity if you'd like to purchase more!</h2>
           </div>
-          <div className="flex flex-col text-center font-bold  bg-blue-400">
+          <div className="flex flex-col text-center font-bold bg-yellow-900">
 
             
             <table className="text-left table-fixed border-collapse text-white">
@@ -184,9 +185,7 @@ function CoinCollection(props) {
                         <div className="">
                           <img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} onClick={() => play(nft.id)}/>
                         </div>
-                        <button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Click Coin to Flip</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nft.id}<br></br>Type: {nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>                
-                      
-                 
+                        <button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Touch Coin to Toss into my Waters</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nft.id}<br></br>Type: {nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>                                    
               
                     </tr>
                   ))}

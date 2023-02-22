@@ -1,11 +1,8 @@
 import "./dist/output.css"
 
 import CoinCollection from "./components/CoinCollection.js";
-import SaleCollection from "./components/SaleCollection.js";
 import CoinStore from "./components/CoinStore.js";
-import Waterfall from "./components/Waterfall.js";
 import AdminStore from "./components/AdminStore.js"
-import SetupAccount from "./components/SetupAccount.js"
 import PreviousCoinFlips from "./components/PreviousCoinFlips.js"
 import Footer from "./components/Footer.js"
 
@@ -68,7 +65,7 @@ function App() {
     
     <div>
 
-    <div className="flex flex-col mx-auto space-y-6 md:space-y-6 md:flex-row bg-zinc-800">
+    <div className="flex flex-col mx-auto space-y-6 md:space-y-6 md:flex-row bg-blue-400">
         <div className="flex flex-col space-y-14 md:w-1/2">
             <h2 className="max-w-md text-4xl font-bold text-center md:text-left md:ml-14 text-white">
                 Waterfall of Luck                  
@@ -76,7 +73,7 @@ function App() {
         </div>
         <div className=" flex flex-col space-y-14 md:w-1/2">
             <div className="flex flex-col">
-                <div className="rounded-l-full bg-brightRedSupLight">
+                <div className="rounded-l-full bg-zinc-500">
                     <div className="flex items-center space-x-2">
                       
 
@@ -91,7 +88,7 @@ function App() {
                         </div>     
                     }
         
-                        <div>
+                        <div className="text-white">
                             <h2 className="font-bold">Character Information</h2>
                             <h2 className="font-bold">Name: {user.loggedIn == true ? user.addr : ''}</h2>
                             <h2 className="font-bold">FLOW Balance: {balance}</h2>
@@ -102,10 +99,67 @@ function App() {
         </div>
       </div>        
       
-      <div className="flex flex-col font-bold text-center text-white bg-purple-400">        
-       
-       <Waterfall user={user} coincollectioncheck={coincollectioncheck}/>
+      <div className="flex flex-col font-bold text-white bg-purple-400">
+      
+        { user.loggedIn == true && coincollectioncheck == false
+        ?
+        <SetupAccount/>
+        :
+        null
+        }
 
+        { user.loggedIn == null
+        ?
+        <div className="font-bold text-center relative">
+          <img className="flex flex-col justify-center items-center mx-auto" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
+          <div className="absolute top-0 left-0 right-0 px-4 py-2 bg-gray-800 opacity-70">
+            <h3 className="text-xl text-white font-bold">
+            Welcome traveler! <br></br></h3>
+            <p className="mt-2 text-sm text-gray-300">Yes, the tales are true, I am the Waterfall of Luck.. <br></br>and luckily for you I can speak English!<br></br>
+            <br></br>I want to have some fun with you, but first I'd like to get to know who you are. Look for a way to identify yourself! Legends say there might be a big button that says 'Connect Character'.<br></br></p>
+          </div>
+        </div>
+        :
+        null
+        }
+
+        { user.loggedIn == true && coincollectioncheck == true
+        ?
+        
+        <div className="font-bold text-center relative">
+          <img className="flex flex-col justify-center items-center mx-auto" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
+          <div className="absolute top-0 left-0 right-0 px-4 py-2 bg-gray-800 opacity-70">
+            <h3 className="text-xl text-white font-bold">
+            Feeling lucky today? <br></br></h3>
+            <p className="mt-2 text-sm text-gray-300">I hope so!<br></br>As the great Waterfall of Luck, I will allow you to throw in a marked coin, if it lands with the marking faced up in my waters.. treaures await you!<br></br></p>
+          </div>
+        </div>
+
+        :
+        null
+        }
+
+        { user.loggedIn == true && coincollectioncheck == true
+        ?
+        <CoinCollection address={user.addr}/>
+        :
+        null
+        }
+
+        { user.loggedIn == true && coincollectioncheck == true
+        ?
+        <CoinStore address="0xf788ae5c7ec2d1ae"/>  
+        :
+        null
+        }
+
+        { user.loggedIn == true && coincollectioncheck == true
+        ?
+        <PreviousCoinFlips/>
+        :
+        null
+        }
+       
       </div>
       
       <Footer/>
