@@ -14,7 +14,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                         <span>
                             Transaction Status: Initializing
                             <br/>
-                            <small>Waiting for transaction approval to send coin to be flipped.</small>
+                            <small>You have the coin in your hands, ready to toss it into my waters!</small>
                     
                         </span>
                         <br/>           
@@ -36,7 +36,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             </span>
                         Pending
                         <br/>
-                        <small>The transaction to send the coin to be flipped is currently pending.</small>
+                        <small>You have tossed the coin into the air towards my waters!</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -57,7 +57,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             </span>
                         Finalized
                         <br/>
-                        <small>The transaction to send the coin to be flipped is currently executing.</small>
+                        <small>The coin has hit my waters!</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -77,7 +77,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                             </span>
                             Executed
                             <br />
-                            <small>The transaction to send the coin to be flipped is currently sealing.</small>
+                            <small>The coin is now sinking towards the bottom of the waters.</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -97,7 +97,7 @@ function Transaction ({txId, txInProgress, txStatus, txStatusCode}) {
                         </span>
                             Sealed
                             <br />
-                            <small>Transaction Complete. At this point the transaction result has been committed to the blockchain. The coin has been sent to the admin and is awaiting to be flipped in queue.</small>
+                            <small>The coin is still falling to the bottom. We will wait a few moments, around 25 seconds, to see how it lands. Scroll to the Live Coin Result section to see the real-time result.</small>
                         </span>
                         <br/>
                         <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
