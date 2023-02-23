@@ -170,7 +170,7 @@ function CoinCollection(props) {
 
           <div className="flex flex-col text-center font-bold bg-gradient-to-r from-yellow-900 to-yellow-700">
             <h1 className="text-white text-4xl pb-4">Your Coin Satchel</h1>
-            <h2>This is where you can see all your coins that are ready to be thrown into my waters! Visit the Shop of Curiosity if you'd like to purchase more!</h2>
+            <h2 className="italic">This is where you can see all your coins that are ready to be thrown into my waters! Visit the Shop of Curiosity if you'd like to purchase more!</h2>
           </div>
           <div className="flex flex-col text-center font-bold bg-yellow-900">
 
