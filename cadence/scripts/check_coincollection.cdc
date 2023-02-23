@@ -5,7 +5,7 @@ import Coin from "../contracts/Coin.cdc"
 
 pub fun main(address: Address): Bool {
    
-    let collection = getAccount(address).getCapability<&Coin.Collection{Coin.CollectionPublic}>(/public/CoinCollection).borrow()
+    let collection = getAccount(address).getCapability<&Coin.Collection{Coin.CollectionPublic}>(Coin.CollectionPublicPath).borrow()
     return collection != nil
    
 }

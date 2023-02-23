@@ -7,7 +7,7 @@ pub fun main(account: Address): {UInt64: NFTMarketplace.SaleItem} {
                         .borrow<&NFTMarketplace.SaleCollection{NFTMarketplace.SaleCollectionPublic}>()
                         ?? panic("Could not borrow the user's SaleCollection")
 
-  let collection = getAccount(account).getCapability(/public/CoinCollection) 
+  let collection = getAccount(account).getCapability(Coin.CollectionPublicPath) 
                     .borrow<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>()
                     ?? panic("Can't get the User's collection.")
 

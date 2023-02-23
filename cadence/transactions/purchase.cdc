@@ -23,7 +23,7 @@ transaction(account: Address, id: UInt64) {
     acct.getCapability<&NFTMarketplace.SaleCollection{NFTMarketplace.SaleCollectionPublic}>(/public/SaleCollection)
 
     if !saleCap.check() {
-        let CoinCollection = acct.getCapability<&Coin.Collection>(/private/CoinCollection)
+        let CoinCollection = acct.getCapability<&Coin.Collection>(Coin.CollectionPrivatePath)
         let FlowTokenVault = acct.getCapability<&FlowToken.Vault{FungibleToken.Receiver}>(/public/flowTokenReceiver)
         acct.save(<- NFTMarketplace.createSaleCollection(CoinFlipCollection: CoinCollection, FlowTokenVault: FlowTokenVault), to: /storage/SaleCollection)
         acct.link<&NFTMarketplace.SaleCollection{NFTMarketplace.SaleCollectionPublic}>(/public/SaleCollection, target: /storage/SaleCollection)
@@ -31,7 +31,7 @@ transaction(account: Address, id: UInt64) {
     }
 
 
-    let recipientCollection = getAccount(acct.address).getCapability(/public/CoinCollection) 
+    let recipientCollection = getAccount(acct.address).getCapability(Coin.CollectionPublicPath) 
                     .borrow<&Coin.Collection{NonFungibleToken.CollectionPublic}>()
                     ?? panic("Could not borrow the user's CoinCollection. This error should never occur.")
 

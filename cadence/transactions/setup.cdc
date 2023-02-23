@@ -16,8 +16,8 @@ transaction {
             signer.save(<-collection, to: Coin.CollectionStoragePath)
 
             // create a public capability for the collection
-            signer.link<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>(/public/CoinCollection, target: /storage/CoinCollection)
-            signer.link<&Coin.Collection>(/private/CoinCollection, target: /storage/CoinCollection)
+            signer.link<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>(Coin.CollectionPublicPath, target: Coin.CollectionStoragePath)
+            signer.link<&Coin.Collection>(Coin.CollectionPrivatePath, target: Coin.CollectionStoragePath)
             log("CoinFlip Collection setup")
 
         } else {
@@ -29,7 +29,7 @@ transaction {
 
             // create a new empty collection
             let FlowTokenVault = signer.getCapability<&FlowToken.Vault{FungibleToken.Receiver}>(/public/flowTokenReceiver)
-            let CoinCollection = signer.getCapability<&Coin.Collection>(/private/CoinCollection)
+            let CoinCollection = signer.getCapability<&Coin.Collection>(Coin.CollectionPrivatePath)
            
 
             // save it to the account
@@ -47,3 +47,4 @@ transaction {
       log("Account setup ran")
     }
 }
+ 

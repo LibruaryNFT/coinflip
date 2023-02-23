@@ -1,7 +1,7 @@
 export const checkSaleCollection = `
 
 import NonFungibleToken from 0x631e88ae7f1d7c20
-import NFTMarketplace from 0x91b3acc974ec2f7d
+import NFTMarketplace from 0xf8568211504c7dcf
 
 // This script checks if a sale collection exists
 

@@ -115,9 +115,9 @@ function CoinStore(props) {
           <h1 className="text-white text-4xl pb-4">Shop of Curiosity</h1>
           <h2 className="italic">Purchase a coin with a marked side of Heads or Tails. After purchasing, refresh and it will show up in your inventory, neat right?<br></br>
 
-          <div class="fixed left-0 right-0 bottom-0 w-screen z-50 overflow-auto bg-gray-700 opacity-90 flex flex-col items-center justify-center">
+          <div className="fixed left-0 right-0 bottom-0 w-screen z-50 overflow-auto bg-gray-700 opacity-90 flex flex-col items-center justify-center">
 
-	            <h2 class="text-center text-white text-xl font-semibold"><SaleTransaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></h2>
+	            <h2 className="text-center text-white text-xl font-semibold"><SaleTransaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></h2>
           </div>
           </h2>
       </div>
@@ -127,7 +127,7 @@ function CoinStore(props) {
 
             {Object.keys(randomCoins).map(id => (
               <tr key={randomCoins[id].nftRef.id} className="border">
-                <td className="relative"><img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${randomCoins[id].nftRef.ipfsHash}.ipfs.dweb.link/`} onClick={() => purchase(randomCoins[id].nftRef.id)}/><button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Touch Coin to Purchase</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {randomCoins[id].nftRef.id}<br></br>Type: {randomCoins[id].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}<br></br>Price: {Math.round(randomCoins[id].price)} $FLOW</button></td>      
+                <td className="relative"><img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://gateway.pinata.cloud/ipfs/${randomCoins[id].nftRef.ipfsHash}`} onClick={() => purchase(randomCoins[id].nftRef.id)}/><button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Touch Coin to Purchase</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {randomCoins[id].nftRef.id}<br></br>Type: {randomCoins[id].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}<br></br>Price: {Math.round(randomCoins[id].price)} $FLOW</button></td>      
                  
               </tr>
             ))}

@@ -108,7 +108,7 @@ function CoinCollection(props) {
         fcl.transaction(playGame),
         fcl.args([
           fcl.arg(parseInt(id), t.UInt64),
-          fcl.arg("0x91b3acc974ec2f7d", t.Address)
+          fcl.arg("0xf8568211504c7dcf", t.Address)
         ]),
         fcl.payer(fcl.authz),
         fcl.proposer(fcl.authz),
@@ -136,8 +136,8 @@ function CoinCollection(props) {
               <h1 className="flex flex-col text-4xl">Live Coin Result</h1>
               <h2 className="italic">The result of your coin throw will show up here. If you want to see all previous results, check out the Stone Wall of Results</h2>
                 
-                <div class="fixed left-0 right-0 bottom-0 w-screen z-50 overflow-auto bg-gray-700 opacity-90 flex flex-col items-center justify-center">
-	                  <h2 class="text-center text-white text-xl font-semibold"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></h2>
+                <div className="fixed left-0 right-0 bottom-0 w-screen z-50 overflow-auto bg-gray-700 opacity-90 flex flex-col items-center justify-center">
+	                  <h2 className="text-center text-white text-xl font-semibold"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></h2>
                 </div>
               
               
@@ -183,7 +183,7 @@ function CoinCollection(props) {
                     <tr key={nft.id} className="border">
                       <div className="relative">
                         <div className="">
-                          <img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://${nft.ipfsHash}.ipfs.dweb.link/`} onClick={() => play(nft.id)}/>
+                          <img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://gateway.pinata.cloud/ipfs/${nft.ipfsHash}`} onClick={() => play(nft.id)}/>
                         </div>
                         <button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Touch Coin to Toss into my Waters</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {nft.id}<br></br>Type: {nft.kind.rawValue == 0 ? 'Heads' : 'Tails'}</button></div>                                    
               

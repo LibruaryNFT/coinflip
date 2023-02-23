@@ -6,7 +6,7 @@ import Coin from "./../contracts/Coin.cdc"
 // This transction uses the CoinFlipper resource to flip a coin.
 //
 // It must be run with the account that has the CoinFlipper resource
-// stored at path /storage/CoinFlipper.
+// stored at path Coin.CoinFlipperStoragePath.
 
 // recipient is the destination for winnings
 // address and coinID relate to the coin being flipped
@@ -21,7 +21,7 @@ transaction(coinID: UInt64) {
     prepare(signer: AuthAccount) {
 
         // borrow a reference to the CoinFlipper resource in storage
-        self.flipper = signer.borrow<&Coin.CoinFlipper>(from: /storage/CoinFlipper)
+        self.flipper = signer.borrow<&Coin.CoinFlipper>(from: Coin.CoinFlipperStoragePath)
             ?? panic("Could not borrow a reference to the CoinFlipper. flip_coin error.")
         
         // borrow a reference to the flowTokenVault of the signer
@@ -29,10 +29,10 @@ transaction(coinID: UInt64) {
             ?? panic("Could not borrow vault. flip_coin error.")
 
         // Hardcoded
-        //let adminaddress:Address= 0x91b3acc974ec2f7d
+        //let adminaddress:Address= 0xf8568211504c7dcf
         let adminaddress:Address= 0xf8d6e0586b0a20c7
 
-        let collection = getAccount(adminaddress).getCapability(/public/CoinCollection)
+        let collection = getAccount(adminaddress).getCapability(Coin.CollectionPublicPath)
                     .borrow<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>()
                     ?? panic("Can't get the User's collection. flip_coin error.")
 

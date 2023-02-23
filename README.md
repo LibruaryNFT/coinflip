@@ -26,8 +26,11 @@ Use this to get started on the emulator and test the major functionality
  6. flow transactions send ./cadence/transactions/setup.cdc
  7. flow transactions send ./cadence/transactions/setup.cdc --signer=justin
  8. Run three times
- flow transactions send ./cadence/transactions/mint_nft.cdc f8d6e0586b0a20c7 0 0
+
+ flow transactions send ./cadence/transactions/mint_nft.cdc f8d6e0586b0a20c7 0 0 QmZrieu9iKvaSQjt9YksnkxKxghCeLPVubhAcjZovBPrio
+
 9. Run for Tokens 0,1,2
+
 flow transactions send ./cadence/transactions/list_for_sale.cdc 0 1.0
 10. Expect tokens 0,1,2
 flow scripts execute ./cadence/scripts/get_nft_details.cdc f8d6e0586b0a20c7
@@ -51,8 +54,13 @@ flow transactions send ./cadence/transactions/flip_coin.cdc 0
 
 # Testnet Deployment
 
+Old implementation prior to 2/23
 Admin: 0x91b3acc974ec2f7d
 Storefront: 0xf788ae5c7ec2d1ae
+
+New implementation 2/23
+Admin: 0xf8568211504c7dcf
+Storefront: 0x7b2848088d45b449
 
 1. flow keys generate
 2. Enter public key: https://testnet-faucet-v2.onflow.org/
@@ -70,7 +78,7 @@ Storefront: 0xf788ae5c7ec2d1ae
 7. Update flow.json aliases if needed
 8. flow deploy project --network=testnet
 
-9. Verify contracts are deployed https://testnet.flowscan.org/account/0x91b3acc974ec2f7d
+9. Verify contracts are deployed https://testnet.flowscan.org/account/0xf8568211504c7dcf
 
 10. Create a new email account for the storefront
 
@@ -83,23 +91,20 @@ Storefront: 0xf788ae5c7ec2d1ae
 14. Click the setup button for the storefront account
 
 15. Mint a bunch of NFTs of different bronze coins, both heads and tails
-flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 0 0 bafybeigvkyawijvieedj4ret74nyeixo32nl54apw6zlgurjpkzsvo36xe --signer=testnet-account --network=testnet
+flow transactions send ./cadence/transactions/mint_nft.cdc 0x7b2848088d45b449 0 0 QmZrieu9iKvaSQjt9YksnkxKxghCeLPVubhAcjZovBPrio --signer=testnet-account --network=testnet
 
-flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 1 0 bafybeifraraokwjwpyvfypprleumli2n32xfijbcexjneb6rj6yyzifnzi --signer=testnet-account --network=testnet
-
-Pieland
-flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 0 0 bafybeicw7iywcykxa2siw7aofs6kxiwmnyod5poi4smktbn42jnqe4cniu --signer=testnet-account --network=testnet
-
-flow transactions send ./cadence/transactions/mint_nft.cdc 0xf788ae5c7ec2d1ae 1 0 bafybeib5rjnjeu4xy7r5lwoyyoyg3c6ko4mwxiripegwvrx37aciq65lb4 --signer=testnet-account --network=testnet
+flow transactions send ./cadence/transactions/mint_nft.cdc 0x7b2848088d45b449 1 0 QmdKL3bdPWnh4M5HNsBoc9xTcTeUUiN4myUxmqKwVtnsL8 --signer=testnet-account --network=testnet
 
 16. As the storefront, list all the NFTs
 
 # Storage Reference
 
 Coin
-CollectionStoragePath = /storage/CoinCollection
-CollectionPublicPath = /public/CoinCollection
-MinterStoragePath = /storage/CoinMinter
+Coin.CollectionStoragePath = /storage/CoinCollection
+Coin.CollectionPublicPath = /public/CoinCollection
+Coin.MinterStoragePath = /storage/CoinMinter
+Coin.CollectionPrivatePath = /private/CoinCollection
+Coin.CoinFlipperStoragePath = /storage/CoinFlipper
 
 NFTMarketplace
 /public/SaleCollection

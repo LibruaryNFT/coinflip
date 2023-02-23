@@ -10,7 +10,7 @@ transaction(id: UInt64, price: UFix64) {
     acct.getCapability<&NFTMarketplace.SaleCollection{NFTMarketplace.SaleCollectionPublic}>(/public/SaleCollection)
 
     if !saleCap.check() {
-        let CoinCollection = acct.getCapability<&Coin.Collection>(/private/CoinCollection)
+        let CoinCollection = acct.getCapability<&Coin.Collection>(Coin.CollectionPrivatePath)
         let FlowTokenVault = acct.getCapability<&FlowToken.Vault{FungibleToken.Receiver}>(/public/flowTokenReceiver)
         acct.save(<- NFTMarketplace.createSaleCollection(CoinFlipCollection: CoinCollection, FlowTokenVault: FlowTokenVault), to: /storage/SaleCollection)
         acct.link<&NFTMarketplace.SaleCollection{NFTMarketplace.SaleCollectionPublic}>(/public/SaleCollection, target: /storage/SaleCollection)

@@ -41,7 +41,6 @@ function App() {
     }
 
   }, [user])
-
   
   const getTheBalance = async () => {
       const result = await fcl.send([
@@ -118,7 +117,7 @@ function App() {
 
         { user.loggedIn == null
         ?
-        <div className="font-bold text-center relative">
+        <div className="font-bold text-center relative italic">
           <img className="flex flex-col justify-center items-center mx-auto md:w-1/2" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
           <div className="absolute top-0 left-0 right-0 px-4 py-2 bg-gray-800 opacity-90">
             <h3 className="text-xl text-white font-bold">
@@ -134,12 +133,12 @@ function App() {
         { user.loggedIn == true && coincollectioncheck == true
         ?
         
-        <div className="font-bold text-center relative">
+        <div className="font-bold text-center relative italic">
           <img className="flex flex-col justify-center items-center mx-auto md:w-1/2" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
           <div className="absolute top-0 left-0 right-0 px-4 py-2 bg-gray-800 opacity-90">
             <h3 className="text-xl text-white font-bold">
             Feeling lucky today? <br></br></h3>
-            <p className="mt-2 text-sm text-white">I hope so!<br></br>As the great Waterfall of Luck, I will allow you to throw in a marked coin, if it lands with the marking faced up in my waters.. treaures await you!<br></br></p>
+            <p className="mt-2 text-sm text-white">I hope so!<br></br>As the great Waterfall of Luck, I will allow you to throw in a marked coin, if it lands with the marking faced up in my waters.. treasures await you!<br></br></p>
           </div>
         </div>
 
@@ -156,7 +155,7 @@ function App() {
 
         { user.loggedIn == true && coincollectioncheck == true
         ?
-        <CoinStore address="0xf788ae5c7ec2d1ae"/>  
+        <CoinStore address="0x7b2848088d45b449"/>  
         :
         null
         }
@@ -169,7 +168,7 @@ function App() {
         }
        
       </div>
-      
+      <AdminStore/>
       <Footer/>
    
     </div>
