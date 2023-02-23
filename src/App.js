@@ -65,7 +65,7 @@ function App() {
     
     <div>
 
-    <div className="flex flex-col mx-auto space-y-6 md:space-y-6 md:flex-row bg-blue-400">
+    <div className="flex flex-col mx-auto space-y-6 md:space-y-6 md:flex-row bg-gradient-to-r from-sky-500 to-indigo-500">
         <div className="flex flex-col space-y-14 md:w-1/2">
             <h2 className="max-w-md text-4xl font-bold text-center md:text-left md:ml-14 text-white">
                 Waterfall of Luck                  
@@ -99,7 +99,7 @@ function App() {
         </div>
       </div>        
       
-      <div className="flex flex-col font-bold text-white bg-purple-400">
+      <div className="flex flex-col font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-500">
       
         { user.loggedIn == true && coincollectioncheck == false
         ?
@@ -111,7 +111,7 @@ function App() {
         { user.loggedIn == null
         ?
         <div className="font-bold text-center relative">
-          <img className="flex flex-col justify-center items-center mx-auto" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
+          <img className="flex flex-col justify-center items-center mx-auto md:w-1/2" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
           <div className="absolute top-0 left-0 right-0 px-4 py-2 bg-gray-800 opacity-70">
             <h3 className="text-xl text-white font-bold">
             Welcome traveler! <br></br></h3>
@@ -127,7 +127,7 @@ function App() {
         ?
         
         <div className="font-bold text-center relative">
-          <img className="flex flex-col justify-center items-center mx-auto" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
+          <img className="flex flex-col justify-center items-center mx-auto md:w-1/2" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
           <div className="absolute top-0 left-0 right-0 px-4 py-2 bg-gray-800 opacity-70">
             <h3 className="text-xl text-white font-bold">
             Feeling lucky today? <br></br></h3>

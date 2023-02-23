@@ -132,9 +132,9 @@ function CoinCollection(props) {
   return (
         
         <div>
-          <div className="flex flex-col text-white font-bold text-center bg-blue-400">
+          <div className="flex flex-col text-white font-bold text-center bg-gradient-to-r from-lime-500 to-lime-700">
               <h1 className="flex flex-col text-4xl">Live Coin Result</h1>
-              <h2>The result of your coin throw will show up here. If you want to see all previous results, check out the Stone Wall of Results</h2>
+              <h2 className="italic">The result of your coin throw will show up here. If you want to see all previous results, check out the Stone Wall of Results</h2>
                 
                 <div class="fixed left-0 right-0 bottom-0 w-screen z-50 overflow-auto bg-gray-700 opacity-90 flex flex-col items-center justify-center">
 	                  <h2 class="text-center text-white text-xl font-semibold"><Transaction txId={txId} txInProgress={txInProgress} txStatus={txStatus}/></h2>
@@ -168,7 +168,7 @@ function CoinCollection(props) {
           </div>
           
 
-          <div className="flex flex-col text-center font-bold bg-yellow-900">
+          <div className="flex flex-col text-center font-bold bg-gradient-to-r from-yellow-900 to-yellow-700">
             <h1 className="text-white text-4xl pb-4">Your Coin Satchel</h1>
             <h2>This is where you can see all your coins that are ready to be thrown into my waters! Visit the Shop of Curiosity if you'd like to purchase more!</h2>
           </div>

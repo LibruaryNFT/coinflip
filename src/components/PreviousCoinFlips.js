@@ -37,9 +37,9 @@ function PreviousCoinFlips(props) {
   return (
         
         <div>
-          <div className="flex flex-col text-white font-bold bg-gray-400">
+          <div className="flex flex-col text-white font-bold bg-gradient-to-r from-gray-400 to-gray-500">
             <h1 className="text-4xl text-center">Stone Wall of Results</h1>
-            <h2>I etch all of the coin results onto a stone wall for everyone to see.</h2>
+            <h2 className="text-center italic">I etch all of the coin results onto a stone wall for everyone to see.</h2>
             <table className="table-auto text-left border text-sm">
                 <tbody>
                   <tr className="border">
