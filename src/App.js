@@ -118,7 +118,8 @@ function App() {
         { user.loggedIn == null
         ?
         <div className="font-bold text-center relative italic">
-          <img className="flex flex-col justify-center items-center mx-auto md:w-1/2" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
+          <img className="flex flex-col justify-center items-center mx-auto md:w-1/2" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/waterfallofluck.gif"/>
+        
           <div className="absolute top-0 left-0 right-0 px-4 py-2 bg-gray-800 opacity-90">
             <h3 className="text-xl text-white font-bold">
             Welcome traveler! <br></br></h3>
@@ -134,7 +135,7 @@ function App() {
         ?
         
         <div className="font-bold text-center relative italic">
-          <img className="flex flex-col justify-center items-center mx-auto md:w-1/2" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/1.png"/>
+          <img className="flex flex-col justify-center items-center mx-auto md:w-1/2" src="https://raw.githubusercontent.com/LibruaryNFT/WaterfallOfLuck/main/waterfallofluck.gif"/>
           <div className="absolute top-0 left-0 right-0 px-4 py-2 bg-gray-800 opacity-90">
             <h3 className="text-xl text-white font-bold">
             Feeling lucky today? <br></br></h3>
