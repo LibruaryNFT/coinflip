@@ -25,7 +25,7 @@ function PreviousCoinFlips(props) {
         // console.log("getSales fired")
         let data
         let res = await axios
-            .get("https://prod-test-net-dashboard-api.azurewebsites.net/api/company/6fc17a55-6975-4586-b5b5-d39e7a1bec52/search?eventType=A.91b3acc974ec2f7d.Coin.CoinFlipGame")
+            .get("https://prod-test-net-dashboard-api.azurewebsites.net/api/company/6fc17a55-6975-4586-b5b5-d39e7a1bec52/search?eventType=A.f8568211504c7dcf.Coin.CoinFlipGame")
         data = res.data
         setEventsData(data)
     }

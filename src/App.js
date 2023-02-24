@@ -168,7 +168,7 @@ function App() {
         }
        
       </div>
-      <AdminStore/>
+      
       <Footer/>
    
     </div>
