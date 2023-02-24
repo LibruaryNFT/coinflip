@@ -18,10 +18,10 @@ transaction {
             // create a public capability for the collection
             signer.link<&Coin.Collection{NonFungibleToken.CollectionPublic, Coin.CollectionPublic}>(Coin.CollectionPublicPath, target: Coin.CollectionStoragePath)
             signer.link<&Coin.Collection>(Coin.CollectionPrivatePath, target: Coin.CollectionStoragePath)
-            log("CoinFlip Collection setup")
+            log("Collection setup")
 
         } else {
-        log("CoinFlip Collection already exists") 
+        log("Collection already exists") 
 
         }
             

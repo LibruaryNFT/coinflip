@@ -127,7 +127,13 @@ function CoinStore(props) {
 
             {Object.keys(randomCoins).map(id => (
               <tr key={randomCoins[id].nftRef.id} className="border">
-                <td className="relative"><img className="border cursor-pointer rounded-full max-w-xs mx-auto" src={`https://gateway.pinata.cloud/ipfs/${randomCoins[id].nftRef.ipfsHash}`} onClick={() => purchase(randomCoins[id].nftRef.id)}/><button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Touch Coin to Purchase</button><button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">TokenID: {randomCoins[id].nftRef.id}<br></br>Type: {randomCoins[id].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}<br></br>Price: {Math.round(randomCoins[id].price)} $FLOW</button></td>      
+                <td className="relative ">
+                  
+                  <img className="border-dashed cursor-pointer rounded-full w-64 h-64 mx-auto" src={`https://gateway.pinata.cloud/ipfs/${randomCoins[id].nftRef.ipfsHash}`} onClick={() => purchase(randomCoins[id].nftRef.id)}/>
+                
+                  <button className="absolute top-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">Touch Coin to Purchase</button>
+                  <button className="absolute bottom-0 right-0 px-4 py-2 text-white md:py-1 bg-purple-600 font-bold cursor-default">
+                    TokenID: {randomCoins[id].nftRef.id}<br></br>Type: {randomCoins[id].nftRef.kind.rawValue == 0 ? 'Heads' : 'Tails'}<br></br>Price: {Math.round(randomCoins[id].price)} $FLOW</button></td>      
                  
               </tr>
             ))}

@@ -28,7 +28,7 @@ function App() {
       checkTheCoinCollection();
     }
 
-    document.title = 'CoinFlip';
+    document.title = 'Admin';
     
     onload();
 
